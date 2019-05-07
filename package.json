@@ -13,8 +13,10 @@
     "serve": "nodemon server/app.js --exec babel-node"
   },
   "dependencies": {
+    "cors": "^2.8.5",
     "dotenv": "^8.0.0",
     "express": "^4.16.4",
+    "lodash.isempty": "^4.4.0",
     "morgan": "^1.9.1",
     "mysql2": "^1.6.5",
     "sequelize": "^5.8.5"
