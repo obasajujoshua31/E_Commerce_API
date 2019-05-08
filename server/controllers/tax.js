@@ -1,6 +1,8 @@
 import isEmpty from 'lodash.isempty';
 import models from '../models';
 import BaseController from './base';
+import client from '../config/cache';
+import CacheStorage from '../middlewares/checkCache';
 
 
 const { Tax } = models;
@@ -9,6 +11,7 @@ class TaxController extends BaseController {
     static async getAllTaxs(req, res) {
         try {
             const allTaxes = await Tax.findAll();
+            CacheStorage.keepCache(req.originalUrl, allTaxes);
               return super.httpSuccessCollectionResponse(res, allTaxes);
         } catch (error) {
             return super.serverError(res);
@@ -25,6 +28,7 @@ class TaxController extends BaseController {
                         tax_id: id
                     }
                 });
+                CacheStorage.keepCache(req.originalUrl, oneTax);
                 if (!isEmpty(oneTax)) {
                     return super.httpSuccessEachResponse(res, oneTax.dataValues);
                 }
