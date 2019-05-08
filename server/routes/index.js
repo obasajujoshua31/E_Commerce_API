@@ -5,7 +5,7 @@ import taxRouter from './tax';
 const mainAppRouter = Router();
 
 mainAppRouter.use('/departments', departmentRouter);
-mainAppRouter.use('/tax', taxRouter)
+mainAppRouter.use('/tax', taxRouter);
 
 
 export default mainAppRouter;

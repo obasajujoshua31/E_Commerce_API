@@ -1,6 +1,7 @@
 import isEmpty from 'lodash.isempty';
 import models from '../models';
 import BaseController from './base';
+import CacheStorage from '../middlewares/checkCache';
 
 
 const { Department } = models;
@@ -9,6 +10,7 @@ class DepartmentController extends BaseController {
     static async getAllDepartments(req, res) {
         try {
             const allDepartments = await Department.findAll();
+            CacheStorage.keepCache(req.originalUrl, allDepartments);
               return super.httpSuccessCollectionResponse(res, allDepartments);
         } catch (error) {
             return super.serverError(res);
@@ -25,6 +27,7 @@ class DepartmentController extends BaseController {
                         department_id: id
                     }
                 });
+                CacheStorage.keepCache(req.originalUrl, oneDepartment);
                 if (!isEmpty(oneDepartment)) {
                     return super.httpSuccessEachResponse(res, oneDepartment.dataValues);
                 }
