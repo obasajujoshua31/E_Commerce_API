@@ -28,7 +28,8 @@ class DepartmentController extends BaseController {
                 if (!isEmpty(oneDepartment)) {
                     return super.httpSuccessEachResponse(res, oneDepartment.dataValues);
                 }
-                return super.httpErrorResponse(res, 'DEP_02', `Don't exist department with this ID ${id}`, 'department');
+                return super.httpErrorResponse(res, 'DEP_02', 
+                `Don't exist department with this ID ${id}`, 'department');
             } catch (error) {
                 return super.serverError(res);
             }
