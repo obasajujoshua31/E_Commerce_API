@@ -1,40 +1,38 @@
 import isEmpty from 'lodash.isempty';
 import models from '../models';
 import BaseController from './base';
+import CacheStorage from '../middlewares/checkCache';
 
 
 const { Department } = models;
 
 class DepartmentController extends BaseController {
-    static async getAllDepartments(req, res) {
-        try {
-            const allDepartments = await Department.findAll();
-              return super.httpSuccessCollectionResponse(res, allDepartments);
-        } catch (error) {
-            return super.serverError(res);
-        }
+    static getAllDepartments() {
+        return this.asyncFunction(async (req, res) => {
+                const allDepartments = await Department.findAll();
+                  return this.httpSuccessCollectionResponse(req, res, allDepartments);
+        });
     }
 
-    static async getOneDepartment(req, res) {
-        const { id } = req.params;
-        const parsedId = parseInt(id, 10);
-        if (!isNaN(parsedId)) {
-            try {
-                const oneDepartment = await Department.findOne({
-                    where: {
-                        department_id: id
+    static getOneDepartment() {
+        return this.asyncFunction(async (req, res) => {
+            const { id } = req.params;
+            const parsedId = parseInt(id, 10);
+            if (!isNaN(parsedId)) {
+                    const oneDepartment = await Department.findOne({
+                        where: {
+                            department_id: id
+                        }
+                    });
+                    if (!isEmpty(oneDepartment)) {
+                        return this.httpSuccessEachResponse(req, res, oneDepartment.dataValues);
                     }
-                });
-                if (!isEmpty(oneDepartment)) {
-                    return super.httpSuccessEachResponse(res, oneDepartment.dataValues);
-                }
-                return super.httpErrorResponse(res, 'DEP_02', 
-                `Don't exist department with this ID ${id}`, 'department');
-            } catch (error) {
-                return super.serverError(res);
+                    return this.httpErrorResponse(req, res, 'DEP_02', 
+                    `Don't exist department with this ID ${id}`, 'department');
             }
-        }
-        return super.httpErrorResponse(res, 'DEP_01', `The ID ${id} is not a number`, 'department');
+            return this.httpErrorResponse(req, res, 'DEP_01', 
+            `The ID ${id} is not a number`, 'department');
+        });
     }
 }
 

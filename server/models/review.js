@@ -2,21 +2,25 @@ export default (sequelize, Sequelize) => {
   const reviewSchema = {
     review_id: {
       type: Sequelize.INTEGER,
-      defaultValue: Sequelize.UUIDV4,
+      autoIncrement: true,
       primaryKey: true,
       unique: true,
       allowNull: false,
     },
-    name: {
+    review: {
       type: Sequelize.STRING,
     },
     rating: {
       type: Sequelize.INTEGER
     },
+    customer_id: {
+      type: Sequelize.STRING,
+      defaultValue: null
+    },
 
     created_on: {
       type: Sequelize.DATE,
-      allowNull: false
+      allowNull: false,
     },
   };
 
@@ -29,11 +33,7 @@ export default (sequelize, Sequelize) => {
     review.belongsTo(db.Product, {
       foreignKey: 'product_id',
       target: 'product_id'
-    }),
-    review.belongsTo(db.Customer, {
-      foreignKey: 'customer_id',
-      target: 'customer_id'
-    })
-  }
+    });
+  };
   return review;
 };

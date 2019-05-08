@@ -2,26 +2,31 @@ export default (sequelize, Sequelize) => {
     const shoppingCartSchema = {
       item_id: {
         type: Sequelize.INTEGER,
-        defaultValue: Sequelize.UUIDV4,
         primaryKey: true,
         unique: true,
+        autoIncrement: true,
         allowNull: false,
       },
       cart_id: {
         type: Sequelize.STRING,
         allowNull: false
       },
+      product_id: {
+        type: Sequelize.INTEGER,
+        allowNull: false
+      },
       attributes: {
         type: Sequelize.STRING
       },
       quantity: {
-        type: Sequelize.STRING
+        type: Sequelize.INTEGER
       },
       buy_now: {
         type: Sequelize.STRING
       },
       added_on: {
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        allowNull: false
       },
     };
   
@@ -31,10 +36,10 @@ export default (sequelize, Sequelize) => {
     });
   
     shoppingCart.associate = db => {
-      shoppingCart.hasMany(db.Product, {
+      shoppingCart.belongsTo(db.Product, {
         foreignKey: 'product_id',
         target: 'product_id',
-        onDelete: 'CASCADE'
+        onDelete: 'CASCADE',
       });
     };
     return shoppingCart;

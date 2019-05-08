@@ -8,3 +8,5 @@
 
 # Environment Variables
 .env
+
+dump.rdb
