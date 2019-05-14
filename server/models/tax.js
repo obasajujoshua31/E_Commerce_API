@@ -2,7 +2,6 @@ export default (sequelize, Sequelize) => {
   const taxSchema = {
     tax_id: {
       type: Sequelize.INTEGER,
-      defaultValue: Sequelize.UUIDV4,
       primaryKey: true,
       unique: true,
       allowNull: false,

@@ -1,0 +1,82 @@
+{"level":"error","message":"Joshua","service":"user-service"}
+{"level":"error","message":"Only HasMany associations support include.separate","service":"user-service"}
+{"level":"error","message":"Only HasMany associations support include.separate","service":"user-service"}
+{"level":"error","message":"Converting circular structure to JSON","service":"user-service"}
+{"level":"error","message":"Cannot read property 'length' of undefined","service":"user-service"}
+{"level":"error","message":"Cannot read property 'length' of undefined","service":"user-service"}
+{"level":"error","message":"allProducts.push is not a function","service":"user-service"}
+{"level":"error","message":"Found non-callable @@iterator","service":"user-service"}
+{"level":"error","message":"Found non-callable @@iterator","service":"user-service"}
+{"level":"error","message":"Product.findOne(...).getCategories is not a function","service":"user-service"}
+{"level":"error","message":"include.model.getTableName is not a function","service":"user-service"}
+{"level":"error","message":"include.model.getTableName is not a function","service":"user-service"}
+{"level":"error","message":"product.getDepartments is not a function","service":"user-service"}
+{"level":"error","message":"Product.getCategories is not a function","service":"user-service"}
+{"level":"error","message":"Cannot read property 'call' of undefined","service":"user-service"}
+{"level":"error","message":"Cannot read property 'call' of undefined","service":"user-service"}
+{"level":"error","message":"Include unexpected. Element has to be either a Model, an Association or an object.","service":"user-service"}
+{"level":"error","message":"Include unexpected. Element has to be either a Model, an Association or an object.","service":"user-service"}
+{"level":"error","message":"Include unexpected. Element has to be either a Model, an Association or an object.","service":"user-service"}
+{"level":"error","message":"Cannot read property 'status' of undefined","service":"user-service"}
+{"level":"error","message":"Cannot read property 'status' of undefined","service":"user-service"}
+{"level":"error","message":"Cannot read property 'status' of undefined","service":"user-service"}
+{"level":"error","message":"Cannot read property 'status' of undefined","service":"user-service"}
+{"level":"error","message":"Cannot read property 'status' of undefined","service":"user-service"}
+{"level":"error","message":"WHERE parameter \"product_id\" has invalid \"undefined\" value","service":"user-service"}
+{"level":"error","message":"Unknown column 'name' in 'field list'","service":"user-service"}
+{"level":"error","message":"Cannot read property 'match' of undefined","service":"user-service"}
+{"level":"error","message":"notNull Violation: Review.created_on cannot be null","service":"user-service"}
+{"level":"error","message":"notNull Violation: Review.created_on cannot be null","service":"user-service"}
+{"level":"error","message":"notNull Violation: Review.created_on cannot be null","service":"user-service"}
+{"level":"error","message":"Data truncated for column 'review_id' at row 1","service":"user-service"}
+{"level":"error","message":"Data truncated for column 'review_id' at row 1","service":"user-service"}
+{"level":"error","message":"notNull Violation: Review.review_id cannot be null","service":"user-service"}
+{"level":"error","message":"Field 'customer_id' doesn't have a default value","service":"user-service"}
+{"level":"error","message":"Field 'customer_id' doesn't have a default value","service":"user-service"}
+{"level":"error","message":"Field 'customer_id' doesn't have a default value","service":"user-service"}
+{"level":"error","message":"Field 'customer_id' doesn't have a default value","service":"user-service"}
+{"level":"error","message":"Column 'customer_id' cannot be null","service":"user-service"}
+{"level":"error","message":"Column 'customer_id' cannot be null","service":"user-service"}
+{"level":"error","message":"Customer.create is not a function","service":"user-service"}
+{"level":"error","message":"notNull Violation: Customer.customer_id cannot be null","service":"user-service"}
+{"level":"error","message":"Field 'password' doesn't have a default value","service":"user-service"}
+{"level":"error","message":"secret must be a string or buffer","service":"user-service"}
+{"level":"error","message":"Validation error","service":"user-service"}
+{"level":"error","message":"Data too long for column 'password' at row 1","service":"user-service"}
+{"level":"error","message":"Data too long for column 'password' at row 1","service":"user-service"}
+{"level":"error","message":"Data too long for column 'password' at row 1","service":"user-service"}
+{"level":"error","message":"Validation error","service":"user-service"}
+{"level":"error","message":"Validation error","service":"user-service"}
+{"level":"error","message":"Validation error","service":"user-service"}
+{"level":"error","message":"Validation error","service":"user-service"}
+{"level":"error","message":"Validation error","service":"user-service"}
+{"level":"error","message":"secret must be a string or buffer","service":"user-service"}
+{"level":"error","message":"Data too long for column 'password' at row 1","service":"user-service"}
+{"level":"error","message":"secret must be a string or buffer","service":"user-service"}
+{"level":"error","message":"Validation error","service":"user-service"}
+{"level":"error","message":"Cannot destructure property `customer_id` of 'undefined' or 'null'.","service":"user-service"}
+{"level":"error","message":"Column 'customer_id' cannot be null","service":"user-service"}
+{"level":"error","message":"Column 'customer_id' cannot be null","service":"user-service"}
+{"level":"error","message":"Cannot set headers after they are sent to the client","service":"user-service"}
+{"level":"error","message":"Cannot set headers after they are sent to the client","service":"user-service"}
+{"level":"error","message":"Query was empty","service":"user-service"}
+{"level":"error","message":"Query was empty","service":"user-service"}
+{"level":"error","message":"Query was empty","service":"user-service"}
+{"level":"error","message":"Query was empty","service":"user-service"}
+{"level":"error","message":"Converting circular structure to JSON","service":"user-service"}
+{"level":"error","message":"Cannot read property 'updateCustomerCreditCard' of undefined","service":"user-service"}
+{"level":"error","message":"Cannot read property 'updateCustomerCreditCard' of undefined","service":"user-service"}
+{"level":"error","message":"Cannot read property 'updateCustomerCreditCard' of undefined","service":"user-service"}
+{"level":"error","message":"Cannot read property 'findOne' of undefined","service":"user-service"}
+{"level":"error","message":"Cannot read property 'dataValues' of undefined","service":"user-service"}
+{"level":"error","message":"cart.increment is not a function","service":"user-service"}
+{"level":"error","message":"Field 'product_id' doesn't have a default value","service":"user-service"}
+{"level":"error","message":"Field 'product_id' doesn't have a default value","service":"user-service"}
+{"level":"error","message":"Field 'product_id' doesn't have a default value","service":"user-service"}
+{"level":"error","message":"Field 'quantity' doesn't have a default value","service":"user-service"}
+{"level":"error","message":"include.model.getTableName is not a function","service":"user-service"}
+{"level":"error","message":"cart.increment is not a function","service":"user-service"}
+{"level":"error","message":"cart.increment is not a function","service":"user-service"}
+{"level":"error","message":"cart.incrementQuantity is not a function","service":"user-service"}
+{"level":"error","message":"include.model.getTableName is not a function","service":"user-service"}
+{"level":"error","message":"include.model.getTableName is not a function","service":"user-service"}

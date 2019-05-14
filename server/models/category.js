@@ -2,7 +2,6 @@ export default (sequelize, Sequelize) => {
   const categorySchema = {
     category_id: {
       type: Sequelize.INTEGER,
-      defaultValue: Sequelize.UUIDV4,
       primaryKey: true,
       unique: true,
       allowNull: false,
@@ -24,14 +23,19 @@ export default (sequelize, Sequelize) => {
     category.associate = db => {
       category.belongsTo(db.Department, {
         foreignKey: 'department_id',
-        target: 'department_id'
+        target: 'department_id',
       });
 
-      category.hasOne(db.Category, {
+      // category.hasMany(db.Product_Category, {
+      //   foreignKey: 'category_id',
+      //   target: 'category_id',
+      // });
+
+      category.belongsToMany(db.Product, {
         foreignKey: 'category_id',
-        target: 'category_id',
-        through: 'product_category'
-      })
+        otherKey: 'product_id',
+        through: 'Product_Category'
+      });
     };
   return category;
 };

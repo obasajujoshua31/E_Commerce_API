@@ -1,3 +1,4 @@
+
 export default (sequelize, Sequelize) => {
   const productCategorySchema = {
   };
@@ -11,17 +12,19 @@ export default (sequelize, Sequelize) => {
     productCategory.belongsTo(db.Product, {
       foreignKey: 'product_id',
       target: 'product_id',
-      primaryKey: true
     });
-  };
 
-  productCategory.associate = db => {
     productCategory.belongsTo(db.Category, {
       foreignKey: 'category_id',
       target: 'category_id',
-      primaryKey: true
     });
   };
+
+
+  productCategory.countAllProducts = function(category_id) {
+    return this.count({ where: { category_id } });
+  };
+
 productCategory.removeAttribute('id');
 
   return productCategory;

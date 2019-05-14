@@ -2,7 +2,6 @@ export default (sequelize, Sequelize) => {
   const attributeSchema = {
     attribute_id: {
       type: Sequelize.INTEGER,
-      defaultValue: Sequelize.UUIDV4,
       primaryKey: true,
       unique: true,
       allowNull: false,
@@ -16,5 +15,12 @@ export default (sequelize, Sequelize) => {
     freezeTableName: true,
     timestamps: false
   });
+
+  attribute.associate = db => {
+    attribute.hasMany(db.Attribute_Value, {
+      foreignKey: 'attribute_id',
+      target: 'attribute_id'
+    });
+  };
   return attribute;
 };

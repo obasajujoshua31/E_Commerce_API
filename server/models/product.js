@@ -2,7 +2,6 @@ export default (sequelize, Sequelize) => {
   const productSchema = {
     product_id: {
       type: Sequelize.INTEGER,
-      defaultValue: Sequelize.UUIDV4,
       primaryKey: true,
       unique: true,
       allowNull: false,
@@ -18,10 +17,19 @@ export default (sequelize, Sequelize) => {
       type: Sequelize.STRING
     },
     discounted_price: {
-      type: Sequelize.STRING
+      type: Sequelize.DOUBLE
     },
     thumbnail: {
       type: Sequelize.STRING
+    },
+    image: {
+      type: Sequelize.STRING
+    },
+    image_2: {
+      type: Sequelize.STRING
+    },
+    display: {
+      type: Sequelize.INTEGER
     }
   };
 
@@ -31,11 +39,16 @@ export default (sequelize, Sequelize) => {
   });
 
   product.associate = db => {
-    product.hasOne(db.Category, {
+    product.hasMany(db.Shopping_Cart, {
       foreignKey: 'product_id',
-      target: 'product_id',
-      through: 'product_category'
-    })
-  }
+      targetKey: 'product_id'
+    });
+
+    product.belongsToMany(db.Category, {
+      foreignKey: 'product_id',
+      otherKey: 'category_id',
+      through: 'Product_Category'
+    });
+  };
   return product;
 };

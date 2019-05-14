@@ -1,5 +1,5 @@
-
-
+import createCache from '../utils/createCache';
+import logger from '../utils/logger';
 /**
  *
  *
@@ -12,12 +12,21 @@
      * @param  {Array} data
      * @returns  {object} server response
      */
-    static httpSuccessCollectionResponse(res, data) {
+    static httpSuccessCollectionResponse(req, res, data, keep = true) {
+        if (keep) {
+            createCache(req.originalUrl, { data });
+        }
+     
         return res.status(200).json([...data]);
     }
 
-    static httpSuccessEachResponse(res, data) {
-        return res.status(200).json({
+    static httpSuccessEachResponse(req, res, data, keep = true) {
+        const result = { ...data };
+        if (keep) {
+            createCache(req.originalUrl, result);
+        }
+
+        return res.status(res.statusCode || 200).json({
             ...data
         });
     }
@@ -32,14 +41,18 @@
  * @returns {object} server response
  * @memberof BaseController
  */
-static httpErrorResponse(res, code, message, field) {
+static httpErrorResponse(req, res, code, message, field, keep = true) {
+    const error = {
+        error: {
+            status: 400, code, message, field
+        }
+    };
+    if (keep) {
+        createCache(req.originalUrl, error);
+    }
+   
         return res.status(400).json({
-           error: {
-            status: 400,
-            code,
-            message,
-            field
-           } 
+           ...error
         });
     }
 
@@ -58,6 +71,18 @@ static httpErrorResponse(res, code, message, field) {
                 message: 'Server unavailable'
             }
         });
+    }
+
+    static asyncFunction(handler) {
+        return async (req, res) => {
+            try {
+               await handler(req, res);
+            } catch (error) {
+                console.log('!!!!!!!!!!!', error);
+                logger.log({ level: 'error', message: error.message });
+                return this.serverError(res);
+            }
+        };
     }
 }
 

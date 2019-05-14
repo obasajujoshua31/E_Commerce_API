@@ -2,7 +2,6 @@ export default (sequelize, Sequelize) => {
   const shippingSchema = {
     shipping_id: {
       type: Sequelize.INTEGER,
-      defaultValue: Sequelize.UUIDV4,
       primaryKey: true,
       unique: true,
       allowNull: false,
@@ -24,7 +23,7 @@ export default (sequelize, Sequelize) => {
     shipping.belongsTo(db.Shipping_Region, {
       foreignKey: 'shipping_region_id',
       target: 'shipping_region_id'
-    })
-  }
+    });
+  };
   return shipping;
 };
