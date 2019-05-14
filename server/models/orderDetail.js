@@ -2,8 +2,6 @@ export default (sequelize, Sequelize) => {
     const orderDetailSchema = {
       item_id: {
         type: Sequelize.INTEGER,
-        primaryKey: true,
-        unique: true,
         allowNull: false,
       },
       attributes: {
@@ -11,13 +9,16 @@ export default (sequelize, Sequelize) => {
         allowNull: false
       },
       product_name: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
       },
       quantity: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
       },
       unit_cost: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
       },
     };
   
@@ -26,6 +27,7 @@ export default (sequelize, Sequelize) => {
       timestamps: false
     });
   
+    orderDetail.removeAttribute('id'),
     orderDetail.associate = db => {
       orderDetail.belongsTo(db.Orders, {
         foreignKey: 'order_id',
@@ -38,5 +40,7 @@ export default (sequelize, Sequelize) => {
         target: 'product_id'
       });
     };
+
+    
     return orderDetail;
   };

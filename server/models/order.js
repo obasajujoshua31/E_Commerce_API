@@ -4,14 +4,15 @@ export default (sequelize, Sequelize) => {
       type: Sequelize.INTEGER,
       primaryKey: true,
       unique: true,
+      autoIncrement: true,
       allowNull: false,
     },
     total_amount: {
       type: Sequelize.STRING,
-      allowNull: false
     },
     created_on: {
-      type: Sequelize.DATE
+      type: Sequelize.DATE,
+      allowNull: false
     },
     shipped_on: {
       type: Sequelize.DATE
@@ -24,6 +25,14 @@ export default (sequelize, Sequelize) => {
     },
     auth_code: {
       type: Sequelize.STRING
+    },
+    shipping_id: {
+      type: Sequelize.INTEGER,
+      allowNull: false
+    },
+    tax_id: {
+      type: Sequelize.INTEGER,
+      allowNull: false
     },
     reference: {
       type: Sequelize.STRING
@@ -50,6 +59,11 @@ export default (sequelize, Sequelize) => {
     order.hasOne(db.Tax, {
       foreignKey: 'tax_id',
       target: 'tax_id'
+    });
+
+    order.hasMany(db.Order_Detail, {
+      foreignKey: 'order_id',
+      target: 'order_id'
     });
   };
   return order;
