@@ -1,5 +1,7 @@
+import { check, validationResult } from 'express-validator/check';
 import models from "../models";
 import { validator } from "../validations/validator";
+import formatError from '../utils/formatError';
 import {
   signUpSchema,
   signInSchema,
@@ -7,7 +9,7 @@ import {
  updateCustomerCreditCardSchema,
   updateCustomerProfileBiodataSchema,
   productReviewSchema,
-  addShoppingCartSchema
+  addShoppingCartSchema,
 } from "../validations/schemas/schema";
 
 const { Users } = models;
@@ -48,4 +50,20 @@ export default async (req, res, next) => {
   }
   req.body = validation.fields;
   return next();
+};
+
+export const validateUpdateCart = () => {
+  return [
+    check('quantity').isNumeric().withMessage('quantity must be a number')
+    .isLength({ min: 1 }).withMessage('quantity field is empty'),
+    (req, res, next) => {
+      const errors = validationResult(req);
+      if (!errors.isEmpty()) {
+         return res.status(400).json({
+           errors: formatError(errors.array())
+         });
+      }
+      return next();
+    }
+  ];
 };

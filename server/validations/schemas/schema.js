@@ -144,6 +144,7 @@ const address_2 = Joi.string()
   .required()
   .label('product_id');
 
+
   const attributes = Joi.string()
     .required()
     .trim()
