@@ -80,3 +80,4 @@
 {"level":"error","message":"cart.incrementQuantity is not a function","service":"user-service"}
 {"level":"error","message":"include.model.getTableName is not a function","service":"user-service"}
 {"level":"error","message":"include.model.getTableName is not a function","service":"user-service"}
+{"level":"error","message":"Cannot read property 'updateItem' of undefined","service":"user-service"}

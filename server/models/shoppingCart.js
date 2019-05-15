@@ -22,7 +22,7 @@ export default (sequelize, Sequelize) => {
         type: Sequelize.INTEGER
       },
       buy_now: {
-        type: Sequelize.STRING
+        type: Sequelize.INTEGER
       },
       added_on: {
         type: Sequelize.DATE,
@@ -41,6 +41,18 @@ export default (sequelize, Sequelize) => {
         target: 'product_id',
         onDelete: 'CASCADE',
       });
+    };
+
+    shoppingCart.prototype.updateItem = async function(quantity) {
+      this.quantity = quantity;
+      await this.save();
+      await this.reload();
+    };
+
+    shoppingCart.prototype.saveOrMoveToCart = async function(payload) {
+      this.buy_now = payload;
+      await this.save();
+      await this.reload();
     };
     return shoppingCart;
   };
