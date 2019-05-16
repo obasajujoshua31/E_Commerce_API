@@ -3,7 +3,7 @@ import TaxController from '../controllers/tax';
 
 const taxRouter = Router();
 
-taxRouter.get('/', TaxController.getAllTaxs());
-taxRouter.get('/:id', TaxController.getOneTax());
+taxRouter.get('/', TaxController.getAllTaxes());
+taxRouter.get('/:id', TaxController.getTax());
 
 export default taxRouter;

@@ -1,14 +1,12 @@
 import isEmpty from 'lodash.isempty';
-import models from '../models';
+import ShippingService from '../services/shipping';
 import BaseController from './base';
 
-
-const { Shipping_Region, Shipping } = models;
 
 class ShippingController extends BaseController {
     static getAllShippingRegion() {
         return this.asyncFunction(async (req, res) => {
-                const allShippings = await Shipping_Region.findAll();
+                const allShippings = await ShippingService.getAllShippings();
                   return super.httpSuccessCollectionResponse(req, res, allShippings);
         });
     }
@@ -18,15 +16,7 @@ class ShippingController extends BaseController {
         const { shipping_id } = req.params;
         const parsedId = parseInt(shipping_id, 10);
         if (!isNaN(parsedId)) {
-                const oneShipping = await Shipping_Region.findOne({
-                    where: {
-                        shipping_region_id: shipping_id
-                    },
-                    include: [{
-                        model: Shipping,
-                    }]
-                    
-                });
+                const oneShipping = await ShippingService.getOneShipping(shipping_id);
                 if (!isEmpty(oneShipping)) {
                     if (!isEmpty(oneShipping.dataValues.Shippings)) {
                         return super.httpSuccessCollectionResponse(req, res, 

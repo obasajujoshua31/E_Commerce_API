@@ -81,3 +81,22 @@
 {"level":"error","message":"include.model.getTableName is not a function","service":"user-service"}
 {"level":"error","message":"include.model.getTableName is not a function","service":"user-service"}
 {"level":"error","message":"Cannot read property 'updateItem' of undefined","service":"user-service"}
+{"level":"error","service":"user-service"}
+{"level":"error","service":"user-service"}
+{"level":"error","message":"Cannot read property 'findAll' of undefined","service":"user-service"}
+{"level":"error","message":"_attributes.default.getAllAttributeValues is not a function","service":"user-service"}
+{"level":"error","message":"Maximum call stack size exceeded","service":"user-service"}
+{"level":"error","message":"Maximum call stack size exceeded","service":"user-service"}
+{"level":"error","message":"Maximum call stack size exceeded","service":"user-service"}
+{"level":"error","message":"Maximum call stack size exceeded","service":"user-service"}
+{"level":"error","message":"Maximum call stack size exceeded","service":"user-service"}
+{"level":"error","message":"Cannot read property 'status' of undefined","service":"user-service"}
+{"level":"error","message":"model.create is not a function","service":"user-service"}
+{"level":"error","message":"updateOnDuplicate option only supports non-empty array.","service":"user-service"}
+{"level":"error","message":"Field 'order_id' doesn't have a default value","service":"user-service"}
+{"level":"error","message":"Field 'order_id' doesn't have a default value","service":"user-service"}
+{"level":"error","message":"Field 'product_id' doesn't have a default value","service":"user-service"}
+{"level":"error","message":"Invalid value { shipping_region_id: '4' }","service":"user-service"}
+{"level":"error","message":"Invalid value { model: Shipping }","service":"user-service"}
+{"level":"error","message":"Cannot read property 'destroy' of undefined","service":"user-service"}
+{"level":"error","message":"Cannot read property 'dataValues' of null","service":"user-service"}

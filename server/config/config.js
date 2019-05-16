@@ -1,28 +1,29 @@
 import dotenv from 'dotenv';
 
 dotenv.config();
-const { PASSWORD, DATABASE, USERNAME } = process.env;
+const { PASSWORD, DATABASE, USERNAME, CLIENT_SECRET, HOST, DIALECT } = process.env;
 
-module.exports = {
-  development: {
+export default {
+database: {
     username: USERNAME,
     password: PASSWORD,
     database: DATABASE,
-    host: "127.0.0.1",
-    dialect: "mysql"
+    host: HOST,
+    dialect: DIALECT
   },
-  test: {
-    username: "root",
-    password: null,
-    database: "database_test",
-    host: "127.0.0.1",
-    dialect: "mysql"
-  },
-  production: {
-    username: "root",
-    password: null,
-    database: "database_production",
-    host: "127.0.0.1",
-    dialect: "mysql"
-  }
+   appSecret: CLIENT_SECRET
+  // test: {
+  //   username: "root",
+  //   password: null,
+  //   database: "database_test",
+  //   host: "127.0.0.1",
+  //   dialect: "mysql"
+  // },
+  // production: {
+  //   username: "root",
+  //   password: null,
+  //   database: "database_production",
+  //   host: "127.0.0.1",
+  //   dialect: "mysql"
+  // }
 };

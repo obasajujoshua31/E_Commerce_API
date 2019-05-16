@@ -1,5 +1,8 @@
 import isEmpty from 'lodash.isempty';
 import models from '../models';
+import AttributeService from '../services/attributes';
+import AttributeValueService from '../services/attributeValue';
+import ProductAttributeService from '../services/productAttribute';
 import BaseController from './base';
 
 
@@ -8,7 +11,7 @@ const { Attribute, Attribute_Value, Product_Attribute } = models;
 class AttributeController extends BaseController {
     static getAllAttributes() {
             return this.asyncFunction(async (req, res) => {
-                const allAttributs = await Attribute.findAll();
+                const allAttributs = await AttributeService.getAllAttributes();
                 return this.httpSuccessCollectionResponse(req, res, allAttributs);
             });
     }
@@ -18,11 +21,7 @@ class AttributeController extends BaseController {
             const { id } = req.params;
             const parsedId = parseInt(id, 10);
             if (!isNaN(parsedId)) {
-                    const oneAttribute = await Attribute.findOne({
-                        where: {
-                            attribute_id: id
-                        }
-                    });
+                    const oneAttribute = await AttributeService.getAttribute(id);
                     if (!isEmpty(oneAttribute)) {
                         return this.httpSuccessEachResponse(req, res, oneAttribute.dataValues);
                     }
@@ -39,11 +38,7 @@ class AttributeController extends BaseController {
             const { value_id } = req.params;
             const parsedId = parseInt(value_id, 10);
             if (!isNaN(parsedId)) {
-                    const oneAttibuteValue = await Attribute_Value.findAll({
-                        where: {
-                            attribute_id: value_id
-                        },
-                    });
+                    const oneAttibuteValue = await AttributeValueService.getAllAttributeValues(value_id);
                         if (!isEmpty(oneAttibuteValue)) {
                             return super.httpSuccessCollectionResponse(req, res, oneAttibuteValue);
                         }
@@ -59,17 +54,7 @@ class AttributeController extends BaseController {
     static getAllProductAttributes () {
         return this.asyncFunction(async (req, res) => {
             const { product_id } = req.params;
-                const allProductAttributes = await Product_Attribute.findAll({
-                    where: {
-                        product_id
-                    },
-                    include: [{
-                        model: Attribute_Value,
-                          include: [{
-                            model: Attribute
-                        }]
-                    }]
-                });
+                const allProductAttributes = await ProductAttributeService.getAllAttributeValues(product_id);
                 if (!isEmpty(allProductAttributes)) {
                     const allProducts = [];
                     allProductAttributes.forEach((attribute) => {

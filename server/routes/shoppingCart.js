@@ -19,7 +19,8 @@ shoppingCartRouter.get('/saveForLater/:item_id',
 
 shoppingCartRouter.get('/getSaved/:cart_id', ShoppingCartController.getItemsSavedForLater() );
 shoppingCartRouter.get('/moveToCart/:item_id', findItem, ShoppingCartController.moveToCart());
-shoppingCartRouter.delete('/removeProduct/:item_id', ShoppingCartController.removeItemFromCart());
+    shoppingCartRouter.delete('/removeProduct/:item_id', 
+    findItem, ShoppingCartController.removeItemFromCart());
 
 shoppingCartRouter.delete('/empty/:cart_id', ShoppingCartController.emptyCart());
 export default shoppingCartRouter;

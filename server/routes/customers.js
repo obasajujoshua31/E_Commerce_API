@@ -22,5 +22,5 @@ customersRouter.put('/creditCard', authenticate.verifyUser,
 customersRouter.put('/address', authenticate.verifyUser, 
         findCustomer, validate,
             CustomerController.updateCustomerAddress());
-
+customersRouter.post('/facebook', validate, CustomerController.facebookLogin());
 export default customersRouter;

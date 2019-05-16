@@ -10,6 +10,8 @@ import {
   updateCustomerProfileBiodataSchema,
   productReviewSchema,
   addShoppingCartSchema,
+  facebookSchema,
+  orderSchema
 } from "../validations/schemas/schema";
 
 const { Users } = models;
@@ -27,7 +29,9 @@ const getSchema = req => {
     "/creditCard": updateCustomerCreditCardSchema,
     "/customer": updateCustomerProfileBiodataSchema,
     "/reviews": productReviewSchema,
-    "/add": addShoppingCartSchema
+    "/add": addShoppingCartSchema,
+    "/facebook": facebookSchema,
+    "/orders": orderSchema
   };
 
   return schemas[`/${req.originalUrl.split('/').pop()}`];

@@ -40,7 +40,6 @@ export default (sequelize, Sequelize) => {
     },
     password: {
       type: Sequelize.STRING,
-      allowNull: false
     },
     shipping_region_id: {
       type: Sequelize.INTEGER
