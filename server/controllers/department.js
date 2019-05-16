@@ -1,15 +1,12 @@
 import isEmpty from 'lodash.isempty';
-import models from '../models';
 import BaseController from './base';
-import CacheStorage from '../middlewares/checkCache';
+import DepartmentService from '../services/department';
 
-
-const { Department } = models;
 
 class DepartmentController extends BaseController {
     static getAllDepartments() {
         return this.asyncFunction(async (req, res) => {
-                const allDepartments = await Department.findAll();
+                const allDepartments = await DepartmentService.getAllDepartments();
                   return this.httpSuccessCollectionResponse(req, res, allDepartments);
         });
     }
@@ -19,11 +16,7 @@ class DepartmentController extends BaseController {
             const { id } = req.params;
             const parsedId = parseInt(id, 10);
             if (!isNaN(parsedId)) {
-                    const oneDepartment = await Department.findOne({
-                        where: {
-                            department_id: id
-                        }
-                    });
+                    const oneDepartment = await DepartmentService.getDepartment(id);
                     if (!isEmpty(oneDepartment)) {
                         return this.httpSuccessEachResponse(req, res, oneDepartment.dataValues);
                     }

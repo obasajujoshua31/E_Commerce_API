@@ -1,22 +1,20 @@
 import isEmpty from 'lodash.isempty';
-import models from '../models';
 import BaseController from './base';
+import ProductService from '../services/product';
 import paginate, { getAllAvailableProducts, manualPaginate, 
             filterProductsCategories } from '../utils/products';
 import getParams, { isValid } from '../utils/getPageParams';
 
-
-const { Product, Product_Category, Category, Department, Review } = models;
 
 export default class ProductController extends BaseController {
     static getAllProducts() {
         return this.asyncFunction(async(req, res) => {
             const { numberOfPage, pageLimit, descriptionLength } = getParams(req.query);
             
-                const allProducts = await Product.findAll(paginate({
+                const allProducts = await ProductService.getAllProducts(paginate({
                     numberOfPage, pageLimit
                 }));
-                const allCount = await Product.count();
+                const allCount = await ProductService.size;
                 const allAvailableProducts = 
                         getAllAvailableProducts(allProducts, descriptionLength);
                 const resultJSON = {
@@ -31,11 +29,7 @@ export default class ProductController extends BaseController {
         return this.asyncFunction(async (req, res) => {
             const { id } = req.params;
             if (isValid(id).valid) {
-               const oneProduct = await Product.findOne({
-                   where: {
-                       product_id: id
-                   }
-               });
+               const oneProduct = await ProductService.getOneProduct(id);
                if (!isEmpty(oneProduct)) {
                    return this.httpSuccessEachResponse(req, res, oneProduct.dataValues);
                }
@@ -53,14 +47,12 @@ static getProductsByCategory() {
         const { numberOfPage, pageLimit, descriptionLength } = getParams(req.query);
     
         if (isValid(category_id).valid) {
-                const allProducts = await Product_Category.findAll({
-                    where: {
-                        category_id,
-                    },
-                    ...paginate({ numberOfPage, pageLimit }),
-                    include: [{ model: Product }]
-                });
-                const count = await Product_Category.countAllProducts(category_id);
+                const allProducts = 
+                        await ProductService
+                            .getCategories(category_id, 
+                                { ...paginate({ numberOfPage, pageLimit }) });
+                
+                const count = await ProductService.countAllCategories(category_id);
     
                 if (!isEmpty(allProducts)) {
                 const allAvailableProducts = 
@@ -84,16 +76,7 @@ static getProductsByCategory() {
             const { department_id } = req.params;
         const { numberOfPage, pageLimit, descriptionLength } = getParams(req.query);
         if (isValid(department_id).valid) {
-                const allProducts = await Category.findAll({
-                    where: {
-                        department_id
-                    },
-                    include: [{
-                        model: Product,
-                        
-                    }]
-                });
-
+         const allProducts = await ProductService.getDepartments(department_id);
                 if (!isEmpty(allProducts)) {
                     const allAvailableProducts = 
                         getAllAvailableProducts(allProducts, descriptionLength, null);
@@ -116,15 +99,8 @@ static getProductsByCategory() {
         return this.asyncFunction(async (req, res) => {
             const { id } = req.params;
             if (isValid(id).valid) {
-                const productCategories = await Product_Category.findOne({
-                    where: { product_id: id },
-                    include: [{
-                        model: Category,
-                        include: [{
-                            model: Department
-                        }]
-                    }]
-                });
+                const productCategories = await 
+                ProductService.getLocations(id);
                 if (!isEmpty(productCategories)) {
                     return this.httpSuccessEachResponse(
                         req, res, filterProductsCategories(productCategories));
@@ -143,11 +119,10 @@ static getProductsByCategory() {
         return this.asyncFunction(async (req, res) => {
             const { product_id } = req.params;
             if (isValid(product_id)) {
-                const productReviews = await Review.findAll({
-                    where: { product_id }
-                });
+                const productReviews = await 
+                ProductService.getReviews(product_id);
             if (!isEmpty(productReviews)) {
-                return this.httpSuccessCollectionResponse(productReviews);
+                return this.httpSuccessCollectionResponse(req, res, productReviews);
             }
             return this.httpErrorResponse(req, res, 'REV_2', 
             `Don't exist Review for the product with ID ${product_id}`, 'review');
@@ -163,7 +138,7 @@ static getProductsByCategory() {
             if (query_string) {
                 const { descriptionLength, pageLimit, numberOfPage } = getParams(req.query);
                 const queryString = new RegExp(`${query_string}`, 'gi');
-                const allProducts = await Product.findAll();
+                const allProducts = await ProductService.getAllProducts();  
                 const allAvailableProducts = allProducts.filter(
                     product => product.description.match(queryString) 
                     || product.name.match(queryString));
@@ -186,13 +161,14 @@ static getProductsByCategory() {
             const { customer_id } = req.user;
             const { review, rating } = req.body;
             if (isValid(product_id).valid) {
-                await Review.create({
+                await ProductService.createReview({
                     review,
                     rating,
                     customer_id,
                     product_id,
                     created_on: new Date()
                 });
+
                return this.httpSuccessCollectionResponse(req, res, [], false);
             }
             

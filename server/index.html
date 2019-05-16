@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <fb:login-button scope="public_profile,email" onlogin="logInWithFacebook();"></fb:login-button>
+  <div class="result"></div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script>
+    logInWithFacebook = function () {
+   
+       FB.getLoginStatus(function (response) {
+        if (response.authResponse) {
+          $.post("http://localhost:2000/customers/facebook", { access_token: response.authResponse.accessToken }, function (data) {
+            $(".result").html(JSON.stringify(data));
+          });
+        } else {
+          alert('User cancelled login or did not fully authorize.');
+        }
+      });
+      return false;
+    };
+    window.fbAsyncInit = function () {
+      FB.init({
+        appId: '404706826997803',
+        cookie: true,
+        xfbml: true,
+        version: 'v2.2'
+      });
+      FB.AppEvents.logPageView();
+    };
+
+    (function (d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) { return; }
+      js = d.createElement(s); js.id = id;
+      js.src = "https://connect.facebook.net/en_US/sdk.js";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+  </script>
+
+</body>
+</html>

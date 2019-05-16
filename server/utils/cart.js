@@ -14,3 +14,17 @@ export default (allProducts) => {
     });
     return products;
 };
+
+
+export const prepareSavedItems = (allItems) => {
+    const items = [];
+    allItems.forEach(item => {
+        items.push({
+            item_id: item.item_id,
+            name: item.Product.name,
+            attributes: item.attributes,
+            price: item.Product.price
+        });
+    });
+    return items;
+};

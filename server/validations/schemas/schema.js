@@ -137,19 +137,32 @@ const address_2 = Joi.string()
 
   const cart_id = Joi.string()
   .required()
-  .label('cart_id');
+  .label('cart_id')
   
   const product_id = Joi.number()
   .integer()
   .required()
   .label('product_id');
 
+  const tax_id = Joi.number()
+  .integer()
+  .required()
+  .label('tax_id');
+
+  const shipping_id = Joi.number()
+  .integer()
+  .required()
+  .label('shipping_id');
 
   const attributes = Joi.string()
     .required()
     .trim()
     .label('attributes');
 
+  const access_token = Joi.string()
+  .required()
+  .trim()
+  .label('access_token');
 
 export const signUpSchema = Joi.object().keys({
   name,
@@ -198,4 +211,14 @@ export const addShoppingCartSchema = Joi.object().keys({
   cart_id,
   product_id,
   attributes
+});
+
+export const facebookSchema = Joi.object().keys({
+  access_token
+});
+
+export const orderSchema = Joi.object().keys({
+  cart_id,
+  shipping_id,
+  tax_id
 });

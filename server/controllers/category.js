@@ -1,6 +1,7 @@
 import isEmpty from 'lodash.isempty';
 import models from '../models';
 import BaseController from './base';
+import CategoryService from '../services/category';
 import paginate from '../utils/getPageParams';
 
 
@@ -13,7 +14,8 @@ class CategoryController extends BaseController {
             const numberOfPage = parseInt(page, 10) || 1;
             const pageLimit = parseInt(limit, 10) || 20;
             
-                const allCategories = await Category.findAll(paginate({ numberOfPage, pageLimit }));
+                const allCategories = await 
+                CategoryService.getAllCategories(paginate({ numberOfPage, pageLimit }));
                 const allTogether = await Category.count();
                     const resultJSON = {
                         count: allTogether,
@@ -28,11 +30,7 @@ class CategoryController extends BaseController {
             const { id } = req.params;
             const parsedId = parseInt(id, 10);
             if (!isNaN(parsedId)) {
-                    const oneCategory = await Category.findOne({
-                        where: {
-                            category_id: id
-                        }
-                    });
+                    const oneCategory = await CategoryService.getCategory(id);
                     if (!isEmpty(oneCategory)) {
                         return this.httpSuccessEachResponse(req, res, oneCategory.dataValues);
                     }
@@ -50,16 +48,7 @@ class CategoryController extends BaseController {
             const { product_id } = req.params;
         const parsedId = parseInt(product_id, 10);
         if (!isNaN(parsedId)) {
-                const allProducts = await Product_Category.findAll({
-                    where: {
-                        product_id: parsedId
-                    }, 
-                    include: [{
-                        model: Category,
-                        attributes: ['category_id', 'name', 'department_id']
-                    }]
-                });
-
+                const allProducts = await CategoryService.getProducts(product_id);
                 if (!isEmpty(allProducts)) {
                     const productCategory = [];
                     allProducts.forEach((category) => {
@@ -81,7 +70,7 @@ class CategoryController extends BaseController {
             const { department_id } = req.params;
             const parsedId = parseInt(department_id, 10);
             if (!isNaN(parsedId)) {
-                    const allCategories = await Category.findAll({
+                    const allCategories = await CategoryService.getAllCategories({
                         where: {
                             department_id: parsedId
                         }, 

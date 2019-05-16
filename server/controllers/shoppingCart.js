@@ -1,13 +1,12 @@
 import isEmpty from 'lodash.isempty';
 import BaseController from './base';
-import models from '../models';
+import ShoppingCartService from '../services/shoppingCart';
 import generateId from '../utils/generateUniqueId';
-import formatCart from '../utils/cart';
+import formatCart, { prepareSavedItems } from '../utils/cart';
 import { MOVE_TO_CART, SAVE_FOR_LATER } from '../utils/constants';
 
-const { Shopping_Cart, Product } = models;
 
-export default class aShoppingCart extends BaseController {
+export default class ShoppingCart extends BaseController {
     static generateUniqueId() {
         return this.asyncFunction((req, res) => {
             res.status(200).json({
@@ -20,15 +19,10 @@ export default class aShoppingCart extends BaseController {
     static addProductToCart() {
         return this.asyncFunction(async(req, res) => {
             const { body: { cart_id, product_id, attributes } } = req;
-            const cart = await Shopping_Cart.findOne({
-                where: {
-                    cart_id,
-                    attributes,
-                    product_id
-                }
-            }); 
+            const cart = await ShoppingCartService.getOneCart(cart_id, attributes, product_id);
+            
             if (isEmpty(cart)) {
-                 await Shopping_Cart.create({
+                await ShoppingCartService.createCart({
                     cart_id,
                     product_id,
                     attributes,
@@ -39,14 +33,7 @@ export default class aShoppingCart extends BaseController {
                 await cart.increment('quantity');
             }
            
-            const allProductsInCart = await Shopping_Cart.findAll({
-                where: {
-                    cart_id
-                },
-                include: [{
-                    model: Product
-                }]
-            });
+            const allProductsInCart = await ShoppingCartService.getProducts(cart_id);
             return this.httpSuccessCollectionResponse(
                 req, res, formatCart(allProductsInCart), false);
         });
@@ -55,14 +42,7 @@ export default class aShoppingCart extends BaseController {
     static getItemsFromCart() {
         return this.asyncFunction(async(req, res) => {
             const { cart_id } = req.params;
-            const items = await Shopping_Cart.findAll({
-                where: {
-                    cart_id
-                },
-                include: [{
-                    model: Product
-                }]
-            });
+            const items = await ShoppingCartService.getProducts(cart_id);
             if (!isEmpty(items)) {
                 return this.httpSuccessCollectionResponse(
                     req, res, formatCart(items), false);
@@ -77,11 +57,7 @@ export default class aShoppingCart extends BaseController {
            const { body: { quantity }, item } = req;
             await item.updateItem(quantity);
            const cart_id = item.get('cart_id');
-           const items = await Shopping_Cart.findAll({
-               where: {
-                   cart_id
-               }
-           });
+           const items = await ShoppingCartService.getProducts(cart_id, false);
            return this.httpSuccessCollectionResponse(req, res, items, false);
     });
 }
@@ -90,14 +66,7 @@ export default class aShoppingCart extends BaseController {
         return this.asyncFunction(async (req, res) => {
             const { cart_id } = req.params;
             
-                const allItems = await Shopping_Cart.findAll({
-                    where: {
-                        cart_id
-                    },
-                    include: [{
-                        model: Product
-                    }]
-                });
+                const allItems = await ShoppingCartService.getProducts(cart_id);
                 if (!isEmpty(allItems)) {
                     const totalCount = allItems.reduce((total_amount, item) => {
                         return total_amount += item.quantity * item.Product.price - 
@@ -124,26 +93,9 @@ export default class aShoppingCart extends BaseController {
     static getItemsSavedForLater() {
         return this.asyncFunction(async (req, res) => {
             const { cart_id } = req.params;
-            const allItems = await Shopping_Cart.findAll({
-                where: {
-                    cart_id,
-                    buy_now: 2
-                },
-                include: [{
-                    model: Product
-                }]
-            });
+            const allItems = await ShoppingCartService.getAllSavedItems(cart_id);
             if (!isEmpty(allItems)) {
-                const items = [];
-                allItems.forEach(item => {
-                    items.push({
-                        item_id: item.item_id,
-                        name: item.Product.name,
-                        attributes: item.attributes,
-                        price: item.Product.price
-                    });
-                });
-
+                const items = prepareSavedItems(allItems);
                 return this.httpSuccessCollectionResponse(req, res, items, false);
             }
             return this.httpErrorResponse(req, res, 'SHC_02', 
@@ -170,19 +122,12 @@ export default class aShoppingCart extends BaseController {
     static emptyCart() {
         return this.asyncFunction(async (req, res) => {
             const { cart_id } = req.params;
-            const cart = await Shopping_Cart.findAll({
-                where: {
-                    cart_id
-                }
-            });
+            const cart = await ShoppingCartService.getProducts(cart_id, false);
             if (!isEmpty(cart)) {
-                await Shopping_Cart.destroy({
-                    where: {
-                        cart_id
-                    }
-                });
+                await ShoppingCartService.dropCart(cart_id);
+                return this.httpSuccessCollectionResponse(req, res, [], false);
             }
-            return this.httpSuccessCollectionResponse(req, res, [], false);
+            return this.httpErrorResponse(req, res, 'CAT_02', 'cart is empty', 'cart_id', false);
         });
     }
 }

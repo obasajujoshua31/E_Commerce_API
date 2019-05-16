@@ -1,26 +1,20 @@
 import isEmpty from 'lodash.isempty';
 import BaseController from './base';
-import models from '../models';
+import CustomerService from '../services/customer';
 import { removePassword } from '../utils/password';
-
-const { Customer, Shipping_Region } = models;
+import ShippingRegionService from '../services/shipping';
+import verifyFacebookToken from '../utils/verifyFacebookToken';
 
 export default class CustomerController extends BaseController {
     static registerCustomer() {
         return this.asyncFunction(async (req, res) => {
             const { name, email, password } = req.body;
-            const customer = await Customer.create({
+            const customer = await CustomerService.createCustomer({
                 name, 
                 email,
-                password
+                password,
             });
-            const verifiedCustomer = await Customer.findOne({ where: 
-                {
-                    customer_id: customer.get('customer_id')
-                } });
-            const customerJSON = { customer: removePassword(verifiedCustomer.dataValues), 
-                accessToken: `Bearer ${customer.generateToken()}`,
-                        expires_in: '24h' };
+            const customerJSON = CustomerService.getCustomerJSON(customer);
             return this.httpSuccessEachResponse(req, res, customerJSON, false);
         });
     }
@@ -29,16 +23,11 @@ export default class CustomerController extends BaseController {
     static loginCustomer() {
         return this.asyncFunction(async (req, res) => {
             const { email, password } = req.body;
-            const customer = await Customer.findOne({
-                where: {
-                    email
-                }
-            });
+            const customer = await CustomerService.getCustomer({ email });
+            
             if (!isEmpty(customer)) {
                 if (customer.confirmPassword(password)) {
-                    const customerJSON = { customer: removePassword(customer.dataValues), 
-                        accessToken: `Bearer ${customer.generateToken()}`,
-                                expires_in: '24h' };
+                    const customerJSON = CustomerService.getCustomerJSON(customer);
                     return this.httpSuccessEachResponse(req, res, customerJSON, false);
                 }
                 return this.httpErrorResponse(req, res, 
@@ -58,6 +47,39 @@ export default class CustomerController extends BaseController {
                 return this.httpSuccessEachResponse(
                     req, res, removePassword(customer.dataValues), false);
         });
+    }
+
+    static facebookLogin() {
+      return this.asyncFunction(async (req, res) => {
+        const { access_token } = req.body;
+        const response = await verifyFacebookToken(access_token);
+        console.log('!!!!!!!!!!!!!', response);
+        const customer = await CustomerService.getCustomer({ email: response.email });
+        if (isEmpty(customer)) {
+            const newCustomer = await CustomerService.createCustomer({
+                email: response.email,
+                name: response.name,
+                password: ''
+            });
+            const customerJSON = CustomerService.getCustomerJSON(newCustomer);
+            const resultJSON = {
+                customer: {
+                    schema: customerJSON.customer,
+                    accessToken: customerJSON.accessToken,
+                    expires_in: customerJSON.expires_in
+            }
+        };
+
+            return this.httpSuccessEachResponse(req, res, resultJSON, false);
+        }
+        const resultJSON = {
+         customer: {
+             schema: removePassword(customer.dataValues)
+         },
+         accessToken: `Bearer ${customer.generateToken()}`
+     };
+        return this.httpSuccessEachResponse(req, res, resultJSON, false);
+      }, true);
     }
 
     static updateCustomerBiodata() {
@@ -82,11 +104,8 @@ export default class CustomerController extends BaseController {
         return this.asyncFunction(async (req, res) => {
             const { customer, body: { shipping_region_id } } = req;
 
-            const foundShippingRegion = await Shipping_Region.findOne({
-                where: {
-                    shipping_region_id
-                }
-            });
+            const foundShippingRegion = await 
+                ShippingRegionService.getOneShipping(shipping_region_id);
             if (!isEmpty(foundShippingRegion)) {
                 const updatedCustomer = await customer.updateCustomerAddress(req.body);
                 return this.httpSuccessEachResponse(
