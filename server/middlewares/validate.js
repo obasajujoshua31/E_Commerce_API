@@ -11,7 +11,8 @@ import {
   productReviewSchema,
   addShoppingCartSchema,
   facebookSchema,
-  orderSchema
+  orderSchema,
+  paymentSchema
 } from "../validations/schemas/schema";
 
 const { Users } = models;
@@ -31,7 +32,8 @@ const getSchema = req => {
     "/reviews": productReviewSchema,
     "/add": addShoppingCartSchema,
     "/facebook": facebookSchema,
-    "/orders": orderSchema
+    "/orders": orderSchema,
+    "/charge": paymentSchema
   };
 
   return schemas[`/${req.originalUrl.split('/').pop()}`];

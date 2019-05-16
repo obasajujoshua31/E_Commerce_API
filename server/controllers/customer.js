@@ -52,13 +52,12 @@ export default class CustomerController extends BaseController {
     static facebookLogin() {
       return this.asyncFunction(async (req, res) => {
         const { access_token } = req.body;
-        const response = await verifyFacebookToken(access_token);
-        console.log('!!!!!!!!!!!!!', response);
-        const customer = await CustomerService.getCustomer({ email: response.email });
+        const { data: { email, name } } = await verifyFacebookToken(access_token);
+        const customer = await CustomerService.getCustomer({ email });
         if (isEmpty(customer)) {
             const newCustomer = await CustomerService.createCustomer({
-                email: response.email,
-                name: response.name,
+                email,
+                name,
                 password: ''
             });
             const customerJSON = CustomerService.getCustomerJSON(newCustomer);

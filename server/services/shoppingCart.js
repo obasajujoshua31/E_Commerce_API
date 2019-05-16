@@ -1,6 +1,6 @@
 import models from '../models';
 import BaseService from './base';
-import { SAVE_FOR_LATER } from '../utils/constants';
+import { SAVE_FOR_LATER, MOVE_TO_CART } from '../utils/constants';
 
 
 const { Shopping_Cart, Product } = models;
@@ -9,7 +9,8 @@ export default class ShoppingCartService extends BaseService {
     static async getProducts(cart_id, option = true) {
        return this.findAll(Shopping_Cart, {
         where: {
-            cart_id
+            cart_id,
+            buy_now: MOVE_TO_CART
         },
         include: option ? 
         [{
