@@ -9,6 +9,7 @@ import customersRouter from './customers';
 import customerRouter from './customer';
 import orderRouter from './order';
 import shoppingCartRouter from './shoppingCart';
+import paymentRouter from './payment';
 import CacheStorage from '../middlewares/checkCache';
 
 const mainAppRouter = Router();
@@ -23,5 +24,6 @@ mainAppRouter.use('/customers', customersRouter);
 mainAppRouter.use('/customer', customerRouter);
 mainAppRouter.use('/orders', orderRouter);
 mainAppRouter.use('/shoppingcart', shoppingCartRouter);  
+mainAppRouter.use('/stripe', paymentRouter);
 
 export default mainAppRouter;

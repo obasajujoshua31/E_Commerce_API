@@ -25,6 +25,7 @@ export default class ShoppingCart extends BaseController {
                 await ShoppingCartService.createCart({
                     cart_id,
                     product_id,
+                    buy_now: MOVE_TO_CART,
                     attributes,
                     quantity: 1,
                     added_on: new Date()

@@ -78,11 +78,17 @@ static httpErrorResponse(req, res, code, message, field, keep = true) {
             try {
                await handler(req, res);
             } catch (error) {
-                console.log('!!!!!!>>', error);
                 if (hasError) {
-                    return res.status(400).json({
-                        error: error.error
-                    });   
+                    switch (error.type) {
+                        case 'StripeInvalidRequestError': 
+                            return res.status(400).json({
+                                error: error.message
+                            });
+                            default:
+                            return res.status(400).json({
+                                error: error.error
+                            }); 
+                    }
                 }
                 logger.log({ level: 'error', message: error.message });
                     return this.serverError(res);

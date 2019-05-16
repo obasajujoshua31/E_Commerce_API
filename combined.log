@@ -100,3 +100,9 @@
 {"level":"error","message":"Invalid value { model: Shipping }","service":"user-service"}
 {"level":"error","message":"Cannot read property 'destroy' of undefined","service":"user-service"}
 {"level":"error","message":"Cannot read property 'dataValues' of null","service":"user-service"}
+{"level":"error","message":"No such customer: tok_1EaiR8L5CNNxoFGFSHEzkc10","service":"user-service"}
+{"level":"error","message":"No such customer: tok_1EaiS3L5CNNxoFGFzpGxNwbx","service":"user-service"}
+{"level":"error","message":"Missing required param: amount.","service":"user-service"}
+{"level":"error","message":"Missing required param: amount.","service":"user-service"}
+{"level":"error","message":"You cannot use a Stripe token more than once: tok_1EaiXEL5CNNxoFGFG11ySTiq.","service":"user-service"}
+{"level":"error","message":"You cannot use a Stripe token more than once: tok_1EaiXEL5CNNxoFGFG11ySTiq.","service":"user-service"}

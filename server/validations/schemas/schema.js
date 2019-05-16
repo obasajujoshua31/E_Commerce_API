@@ -137,7 +137,7 @@ const address_2 = Joi.string()
 
   const cart_id = Joi.string()
   .required()
-  .label('cart_id')
+  .label('cart_id');
   
   const product_id = Joi.number()
   .integer()
@@ -163,6 +163,22 @@ const address_2 = Joi.string()
   .required()
   .trim()
   .label('access_token');
+
+
+  const amount = Joi.number()
+  .integer()
+  .required()
+  .label('amount');
+  
+  const description = Joi.string()
+  .required()
+  .trim()
+  .label('description');
+
+  const stripeToken = Joi.string()
+  .required()
+  .trim()
+  .label('stripeToken');
 
 export const signUpSchema = Joi.object().keys({
   name,
@@ -221,4 +237,11 @@ export const orderSchema = Joi.object().keys({
   cart_id,
   shipping_id,
   tax_id
+});
+
+
+export const paymentSchema = Joi.object().keys({
+  amount,
+  description,
+  stripeToken
 });
