@@ -2,10 +2,12 @@
 import BaseController from '../controllers/base';
 import client from '../config/cache';
 
+const env = process.env.NODE_ENV;
 
 class CacheStorage extends BaseController {
     static checkCache(req, res, next) {
-        const originalUrl = req.originalUrl;
+        if (env !== 'test') {
+            const originalUrl = req.originalUrl;
         const urlArray = originalUrl.split('/');
         return client.get(`turing_backend: ${req.originalUrl}`, (err, result) => {
             if (result) {
@@ -23,6 +25,8 @@ class CacheStorage extends BaseController {
              } 
                 return next();          
         });
+        }
+        return next();
     }
 }
 export default CacheStorage;

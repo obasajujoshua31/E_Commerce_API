@@ -16,9 +16,12 @@ export default class CustomerService extends BaseService {
     }
 
     static getCustomerJSON(customer) {
-        return { customer: removePassword(customer.dataValues), 
-            accessToken: `Bearer ${customer.generateToken()}`,
-                    expires_in: '24h' 
-                };
+        return { customer: {
+            schema: removePassword(customer.dataValues),
+        },
+        accessToken: `Bearer ${customer.generateToken()}`,
+        expires_in: '24h' 
+                    
+     };
     }
 }

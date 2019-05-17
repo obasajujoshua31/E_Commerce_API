@@ -45,7 +45,7 @@ export const findItem = async (req, res, next) => {
             }
         });
     }
-    return res.status(200).json({
+    return res.status(400).json({
         error: {
             code: 'ITM_01',
             message: `The ID ${item_id} is not a number`,

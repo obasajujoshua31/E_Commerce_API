@@ -1,7 +1,7 @@
 import isEmpty from 'lodash.isempty';
-import models from '../models';
 import TaxService from '../services/tax';
 import BaseController from './base';
+
 
 class TaxController extends BaseController {
     static getAllTaxes() {
@@ -23,7 +23,7 @@ class TaxController extends BaseController {
                     return this.httpErrorResponse(req, res, 'TAX_02', 
                     `Don't exist Tax with this ID ${id}`, 'tax');
             }
-            return this.httpErrorResponse(res, 'TAX_01', `The ID ${id} is not a number`, 'tax');
+            return this.httpErrorResponse(req, res, 'TAX_01', `The ID ${id} is not a number`, 'tax');
         });
     }
 }

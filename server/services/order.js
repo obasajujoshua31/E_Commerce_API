@@ -2,12 +2,25 @@ import models from '../models';
 import BaseService from './base';
 
 
-const { Order_Detail, Orders, Shopping_Cart, Product } = models;
+const { Order_Detail, Orders } = models;
 
 export default class OrderService extends BaseService {
     static async getInfo (order_id) {
-       return this.findAll(Order_Detail, { order_id });
+       return await this.findAll(Order_Detail, {
+           where: {
+            order_id, 
+           }
+       });
     }
+
+    static async confirmOrderAndCustomer (order_id, customer_id) {
+        return await this.findAll(Orders, {
+            where: {
+             order_id, 
+             customer_id
+            }
+        });
+     }
 
     static async createOrder(payload) {
         return await this.save(Orders, payload);

@@ -5,7 +5,7 @@ import CategoryService from '../services/category';
 import paginate from '../utils/getPageParams';
 
 
-const { Category, Product_Category } = models;
+const { Category } = models;
 
 class CategoryController extends BaseController {
     static getAllCategories(req, res) {
