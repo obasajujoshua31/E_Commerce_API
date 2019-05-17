@@ -2,29 +2,18 @@ import isEmpty from 'lodash.isempty';
 import BaseController from './base';
 import OrderService from '../services/order';
 import ShoppingCartService from '../services/shoppingCart';
-import models from '../models';
 import { isValid } from '../utils/getPageParams';
 import formatOrder, { prepareOrderInfo, prepareProducts } from '../utils/formatOrder';
 
 
-const { Order_Detail, Orders, Shopping_Cart, Product } = models;
-
 export default class OrderController extends BaseController {
     static getOrderInfo() {
         return this.asyncFunction(async (req, res) => {
-            const { order_id } = req.params;
-            if (isValid(order_id).valid) {
+            const { params: { order_id } } = req;
+            
                 const orders = await OrderService.getInfo(order_id);
-                
-                if (!isEmpty(orders)) {
                     const allOrders = prepareOrderInfo(orders);
                     return this.httpSuccessCollectionResponse(req, res, allOrders, true);
-                }
-                return this.httpErrorResponse(req, res, 'ORD_02', 
-                'order is empty', 'order_id', false);
-            }
-            return this.httpErrorResponse(req, res, 'ORD_01', 
-            `The ID ${order_id} is not a number`, 'order_id');
         });
     }
 
@@ -73,17 +62,9 @@ export default class OrderController extends BaseController {
     static getOrderShortDetail() {
         return this.asyncFunction(async (req, res) => {
             const { order_id } = req.params;
-            if (isValid(order_id).valid) {
                 const orders = await OrderService.getOrderDetail(order_id);
-                if (!isEmpty(orders)) {
                     return this.httpSuccessEachResponse(
                         req, res, formatOrder(orders.dataValues), true);
-                }
-                return this.httpErrorResponse(req, res, 'ORD_02', 
-                'order is empty', 'order_id', true);
-            }
-            return this.httpErrorResponse(req, res, 'ORD_01', 
-            `The ID ${order_id} is not a number`, 'order_id');
         });
     }
 }

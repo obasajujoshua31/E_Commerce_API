@@ -34,7 +34,7 @@ export default class ProductController extends BaseController {
                    return this.httpSuccessEachResponse(req, res, oneProduct.dataValues);
                }
                return this.httpErrorResponse(req, res, 'PR0_2', 
-               `Don't exist department with this ID ${id}`, 'product');
+               `Don't exist product with this ID ${id}`, 'product');
             }
             return this.httpErrorResponse(req, res, 'PRO_01', 
             `The ID ${id} is not a number`, 'product');
@@ -118,7 +118,7 @@ static getProductsByCategory() {
     static getProductsReviews() {
         return this.asyncFunction(async (req, res) => {
             const { product_id } = req.params;
-            if (isValid(product_id)) {
+            if (isValid(product_id).valid) {
                 const productReviews = await 
                 ProductService.getReviews(product_id);
             if (!isEmpty(productReviews)) {
@@ -160,7 +160,6 @@ static getProductsByCategory() {
             const { product_id } = req.params;
             const { customer_id } = req.user;
             const { review, rating } = req.body;
-            if (isValid(product_id).valid) {
                 await ProductService.createReview({
                     review,
                     rating,
@@ -170,10 +169,6 @@ static getProductsByCategory() {
                 });
 
                return this.httpSuccessCollectionResponse(req, res, [], false);
-            }
-            
-            return this.httpErrorResponse(req, res, 'PRO_01', 
-            `The ID ${product_id} is not a number`, 'product_id');
         });
     }
 }

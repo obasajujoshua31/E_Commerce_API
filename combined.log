@@ -106,3 +106,23 @@
 {"level":"error","message":"Missing required param: amount.","service":"user-service"}
 {"level":"error","message":"You cannot use a Stripe token more than once: tok_1EaiXEL5CNNxoFGFG11ySTiq.","service":"user-service"}
 {"level":"error","message":"You cannot use a Stripe token more than once: tok_1EaiXEL5CNNxoFGFG11ySTiq.","service":"user-service"}
+{"level":"error","message":"SQLITE_ERROR: no such table: Tax","service":"user-service"}
+{"level":"error","message":"SQLITE_ERROR: no such table: Tax","service":"user-service"}
+{"level":"error","message":"SQLITE_ERROR: no such table: Tax","service":"user-service"}
+{"level":"error","message":"SQLITE_ERROR: no such table: Tax","service":"user-service"}
+{"level":"error","message":"SQLITE_ERROR: no such table: Tax","service":"user-service"}
+{"level":"error","message":"SQLITE_ERROR: no such table: Tax","service":"user-service"}
+{"level":"error","message":"Client does not support authentication protocol requested by server; consider upgrading MySQL client","service":"user-service"}
+{"level":"error","message":"Client does not support authentication protocol requested by server; consider upgrading MySQL client","service":"user-service"}
+{"level":"error","message":"Client does not support authentication protocol requested by server; consider upgrading MySQL client","service":"user-service"}
+{"level":"error","message":"res.status is not a function","service":"user-service"}
+{"level":"error","message":"Unknown column 'Order_Detail.customer_id' in 'where clause'","service":"user-service"}
+{"level":"error","message":"Unknown column 'Order_Detail.customer_id' in 'where clause'","service":"user-service"}
+{"level":"error","message":"No such token: joshua","service":"user-service"}
+{"level":"error","message":"No such token: joshua","service":"user-service"}
+{"level":"error","message":"No such token: joshua","service":"user-service"}
+{"level":"error","message":"No such token: joshua","service":"user-service"}
+{"level":"error","message":"No such token: joshua","service":"user-service"}
+{"level":"error","message":"Must provide source or customer.","service":"user-service"}
+{"level":"error","message":"Must provide source or customer.","service":"user-service"}
+{"level":"error","message":"No such token: joshua","service":"user-service"}

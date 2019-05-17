@@ -1,0 +1,21 @@
+
+sudo: false
+language: node_js
+node_js:
+  - "8"
+cache:
+  directories:
+    - node_modules
+services:
+    - mysql
+    - redis-server --port 6380 --requirepass 'secret'
+before_install:
+    - mysql -e 'CREATE DATABASE IF NOT EXISTS e_commerce_test;
+before_script:
+    - sudo redis-server /etc/redis/redis.conf --port 6380 --requirepass 'secret'
+install:
+  - npm install
+script:
+  - yarn test
+after_success:
+  - yarn coverage

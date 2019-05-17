@@ -9,40 +9,20 @@ import { errorFormatter } from "../validator";
  * @returns {string} Instance of JOI validation schema
  * @method getNameSchema
  */
-const getNameSchema = label => {
-  const exp = /^[\w'\-,.][^0-9_¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$/;
-  return Joi.string()
-    .required()
-    .trim()
-    .min(2)
-    .regex(exp)
-    .lowercase()
-    .label(label)
-    .error(errors => errorFormatter(errors, label));
-};
 
-const name = getNameSchema("name");
+const name = Joi.string()
+  .required()
+  .min(1)
+  .label('name');
+
+// const name = getNameSchema("name");
 const email = Joi.string()
   .email()
   .required()
   .trim()
-  .label("Email")
-  .lowercase();
+  .label("email");
 
 const password = Joi.string()
-  .min(4)
-  .required()
-  .trim()
-  .label("Password")
-  .error(errors => {
-    return errorFormatter(
-      errors,
-      "Password",
-      "Password must be atleast 4 words"
-    );
-  });
-
-  const passwordUpdate = Joi.string()
   .min(4)
   .required()
   .trim()
@@ -91,10 +71,9 @@ const address_2 = Joi.string()
   .trim()
   .label('country');
 
-  const shipping_region_id = Joi.string()
+  const shipping_region_id = Joi.number()
+  .integer()
   .required()
-  .min(1)
-  .trim()
   .label('shipping_region_id');
 
 
@@ -180,6 +159,10 @@ const address_2 = Joi.string()
   .trim()
   .label('stripeToken');
 
+
+  const currency = Joi.string().allow(null).allow('').optional();
+
+
 export const signUpSchema = Joi.object().keys({
   name,
   email,
@@ -198,7 +181,7 @@ export const signInSchema = Joi.object().keys({
 export const updateCustomerProfileBiodataSchema = Joi.object().keys({
   name,
   email,
-  password: passwordUpdate,
+  password,
   mob_phone,
   eve_phone,
   day_phone,
@@ -243,5 +226,6 @@ export const orderSchema = Joi.object().keys({
 export const paymentSchema = Joi.object().keys({
   amount,
   description,
-  stripeToken
+  stripeToken,
+  currency
 });

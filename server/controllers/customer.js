@@ -2,7 +2,6 @@ import isEmpty from 'lodash.isempty';
 import BaseController from './base';
 import CustomerService from '../services/customer';
 import { removePassword } from '../utils/password';
-import ShippingRegionService from '../services/shipping';
 import verifyFacebookToken from '../utils/verifyFacebookToken';
 
 export default class CustomerController extends BaseController {
@@ -61,22 +60,9 @@ export default class CustomerController extends BaseController {
                 password: ''
             });
             const customerJSON = CustomerService.getCustomerJSON(newCustomer);
-            const resultJSON = {
-                customer: {
-                    schema: customerJSON.customer,
-                    accessToken: customerJSON.accessToken,
-                    expires_in: customerJSON.expires_in
-            }
-        };
-
-            return this.httpSuccessEachResponse(req, res, resultJSON, false);
+            return this.httpSuccessEachResponse(req, res, customerJSON, false);
         }
-        const resultJSON = {
-         customer: {
-             schema: removePassword(customer.dataValues)
-         },
-         accessToken: `Bearer ${customer.generateToken()}`
-     };
+        const resultJSON = CustomerService.getCustomerJSON(customer);
         return this.httpSuccessEachResponse(req, res, resultJSON, false);
       }, true);
     }
@@ -101,17 +87,11 @@ export default class CustomerController extends BaseController {
 
     static updateCustomerAddress() {
         return this.asyncFunction(async (req, res) => {
-            const { customer, body: { shipping_region_id } } = req;
-
-            const foundShippingRegion = await 
-                ShippingRegionService.getOneShipping(shipping_region_id);
-            if (!isEmpty(foundShippingRegion)) {
+            const { customer } = req;
+            
                 const updatedCustomer = await customer.updateCustomerAddress(req.body);
                 return this.httpSuccessEachResponse(
                     req, res, removePassword(updatedCustomer.dataValues), false);
-            }
-            return this.httpErrorResponse(req, res, 'SHP', 
-            'shipping_region_id is not found', 'shipping_region_id');   
         });
     }
 }
