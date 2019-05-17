@@ -106,3 +106,162 @@
 {"level":"error","message":"Missing required param: amount.","service":"user-service"}
 {"level":"error","message":"You cannot use a Stripe token more than once: tok_1EaiXEL5CNNxoFGFG11ySTiq.","service":"user-service"}
 {"level":"error","message":"You cannot use a Stripe token more than once: tok_1EaiXEL5CNNxoFGFG11ySTiq.","service":"user-service"}
+{"level":"error","message":"SQLITE_ERROR: no such table: Tax","service":"user-service"}
+{"level":"error","message":"SQLITE_ERROR: no such table: Tax","service":"user-service"}
+{"level":"error","message":"SQLITE_ERROR: no such table: Tax","service":"user-service"}
+{"level":"error","message":"SQLITE_ERROR: no such table: Tax","service":"user-service"}
+{"level":"error","message":"SQLITE_ERROR: no such table: Tax","service":"user-service"}
+{"level":"error","message":"SQLITE_ERROR: no such table: Tax","service":"user-service"}
+{"level":"error","message":"Client does not support authentication protocol requested by server; consider upgrading MySQL client","service":"user-service"}
+{"level":"error","message":"Client does not support authentication protocol requested by server; consider upgrading MySQL client","service":"user-service"}
+{"level":"error","message":"Client does not support authentication protocol requested by server; consider upgrading MySQL client","service":"user-service"}
+{"level":"error","message":"res.status is not a function","service":"user-service"}
+{"level":"error","message":"Unknown column 'Order_Detail.customer_id' in 'where clause'","service":"user-service"}
+{"level":"error","message":"Unknown column 'Order_Detail.customer_id' in 'where clause'","service":"user-service"}
+{"level":"error","message":"No such token: joshua","service":"user-service"}
+{"level":"error","message":"No such token: joshua","service":"user-service"}
+{"level":"error","message":"No such token: joshua","service":"user-service"}
+{"level":"error","message":"No such token: joshua","service":"user-service"}
+{"level":"error","message":"No such token: joshua","service":"user-service"}
+{"level":"error","message":"Must provide source or customer.","service":"user-service"}
+{"level":"error","message":"Must provide source or customer.","service":"user-service"}
+{"level":"error","message":"No such token: joshua","service":"user-service"}
+{"level":"error","message":"Table 'sql7292150.Attribute' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'sql7292150.Attribute' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'sql7292150.Attribute' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'sql7292150.Attribute_Value' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'sql7292150.Attribute_Value' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'sql7292150.Product_Attribute' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'sql7292150.Product_Attribute' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'sql7292150.Product_Attribute' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'sql7292150.Tax' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'sql7292150.Tax' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'sql7292150.Tax' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'sql7292150.Shipping' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'sql7292150.Shipping_Region' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'sql7292150.Shipping_Region' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'sql7292150.Shipping_Region' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'sql7292150.Category' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'sql7292150.Category' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'sql7292150.Category' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'sql7292150.Product_Category' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'sql7292150.Product_Category' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'sql7292150.Category' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'sql7292150.Category' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'sql7292150.Department' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'sql7292150.Department' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'sql7292150.Department' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'sql7292150.Customer' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'sql7292150.Customer' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'sql7292150.Customer' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'sql7292150.Customer' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'sql7292150.Customer' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'sql7292150.Product' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'sql7292150.Product' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'sql7292150.Product' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'sql7292150.Product' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'sql7292150.Product_Category' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'sql7292150.Product_Category' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'sql7292150.Category' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'sql7292150.Category' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'sql7292150.Product' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'sql7292150.Product' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'sql7292150.Product_Category' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'sql7292150.Product_Category' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'sql7292150.Customer' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'sql7292150.Customer' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'sql7292150.Customer' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'sql7292150.Review' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'sql7292150.Review' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'sql7292150.Review' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'sql7292150.Shopping_Cart' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'sql7292150.Shopping_Cart' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'sql7292150.Shopping_Cart' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'sql7292150.Shopping_Cart' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'sql7292150.Shopping_Cart' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'sql7292150.Shopping_Cart' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'sql7292150.Shopping_Cart' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'sql7292150.Shopping_Cart' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'sql7292150.Customer' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'sql7292150.Customer' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'sql7292150.Customer' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'sql7292150.Customer' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'sql7292150.Customer' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'sql7292150.Customer' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'sql7292150.Customer' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'sql7292150.Customer' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'sql7292150.Customer' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'sql7292150.Customer' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'sql7292150.Customer' doesn't exist","service":"user-service"}
+{"level":"error","message":"Query was empty","service":"user-service"}
+{"level":"error","message":"Query was empty","service":"user-service"}
+{"level":"error","message":"Query was empty","service":"user-service"}
+{"level":"error","message":"Table 'myapp_test.attribute' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'myapp_test.attribute' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'myapp_test.attribute' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'myapp_test.attribute_value' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'myapp_test.attribute_value' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'myapp_test.product_attribute' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'myapp_test.product_attribute' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'myapp_test.product_attribute' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'myapp_test.tax' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'myapp_test.tax' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'myapp_test.tax' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'myapp_test.shipping' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'myapp_test.shipping_region' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'myapp_test.shipping_region' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'myapp_test.shipping_region' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'myapp_test.category' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'myapp_test.category' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'myapp_test.category' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'myapp_test.product_category' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'myapp_test.product_category' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'myapp_test.category' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'myapp_test.category' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'myapp_test.department' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'myapp_test.department' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'myapp_test.department' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'myapp_test.customer' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'myapp_test.customer' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'myapp_test.customer' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'myapp_test.customer' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'myapp_test.customer' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'myapp_test.product' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'myapp_test.product' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'myapp_test.product' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'myapp_test.product' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'myapp_test.product_category' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'myapp_test.product_category' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'myapp_test.category' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'myapp_test.category' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'myapp_test.product' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'myapp_test.product' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'myapp_test.product_category' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'myapp_test.product_category' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'myapp_test.customer' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'myapp_test.customer' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'myapp_test.customer' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'myapp_test.review' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'myapp_test.review' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'myapp_test.review' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'myapp_test.shopping_cart' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'myapp_test.shopping_cart' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'myapp_test.shopping_cart' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'myapp_test.shopping_cart' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'myapp_test.shopping_cart' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'myapp_test.shopping_cart' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'myapp_test.shopping_cart' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'myapp_test.shopping_cart' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'myapp_test.customer' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'myapp_test.customer' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'myapp_test.customer' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'myapp_test.customer' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'myapp_test.customer' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'myapp_test.customer' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'myapp_test.customer' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'myapp_test.customer' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'myapp_test.customer' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'myapp_test.customer' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'myapp_test.customer' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'myapp_test.customer' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'myapp_test.customer' doesn't exist","service":"user-service"}

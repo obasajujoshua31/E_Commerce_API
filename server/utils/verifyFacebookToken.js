@@ -1,5 +1,4 @@
 import newtworkRequest from './networkRequest';
-import { facebookUrl } from './constants';
 
 
 export default (accessToken) => {

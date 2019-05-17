@@ -10,4 +10,12 @@ export default class AttributeService extends BaseService {
             attribute_id: id
         } });
     }
+
+    static async getAttributesValuesByName(value) {
+        return await this.findAll(Attribute_Value, {
+            where: {
+                value
+            }
+        });
+    }
 }

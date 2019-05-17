@@ -1,0 +1,17 @@
+language: node_js
+node_js:
+  - "stable"
+cache:
+  directories:
+    - node_modules
+services:
+    - mysql
+    - redis-server
+before_install:
+  - mysql -e 'CREATE DATABASE myapp_test;'
+install:
+  - npm install
+script:
+  - yarn test
+after_success:
+  - yarn coverage

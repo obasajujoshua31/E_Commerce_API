@@ -6,8 +6,6 @@ import ProductAttributeService from '../services/productAttribute';
 import BaseController from './base';
 
 
-const { Attribute, Attribute_Value, Product_Attribute } = models;
-
 class AttributeController extends BaseController {
     static getAllAttributes() {
             return this.asyncFunction(async (req, res) => {

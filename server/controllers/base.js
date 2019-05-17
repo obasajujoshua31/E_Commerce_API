@@ -78,11 +78,14 @@ static httpErrorResponse(req, res, code, message, field, keep = true) {
             try {
                await handler(req, res);
             } catch (error) {
+                logger.log({ level: 'error', message: error.message });
                 if (hasError) {
                     switch (error.type) {
                         case 'StripeInvalidRequestError': 
-                            return res.status(400).json({
-                                error: error.message
+                            return res.status(401).json({
+                                message: error.message,
+                                code: 'AUT_02',
+                                field: 'API_KEY'
                             });
                             default:
                             return res.status(400).json({
@@ -90,7 +93,6 @@ static httpErrorResponse(req, res, code, message, field, keep = true) {
                             }); 
                     }
                 }
-                logger.log({ level: 'error', message: error.message });
                     return this.serverError(res);
             }
         };
