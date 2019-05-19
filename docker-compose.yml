@@ -7,16 +7,6 @@ services:
     build: .
     ports:
       - '2000:2000'
-    environment:
-      - NODE_ENV=development
-      - REDIS_HOST=redis
-      - HOST=db
-      - DATABASE=e_commerce
-      - PASSWORD=electrical
-      - USERNAME=root
-    links:  
-      - redis
-      - db
   redis: 
     image: redis
     hostname: redis
