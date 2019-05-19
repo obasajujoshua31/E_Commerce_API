@@ -1,7 +1,6 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
-import redis from 'redis';
 import logger from 'morgan';
 import mainAppRouter from './routes';
 

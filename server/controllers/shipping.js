@@ -18,9 +18,9 @@ class ShippingController extends BaseController {
         if (!isNaN(parsedId)) {
                 const oneShipping = await ShippingService.getOneShipping(shipping_id);
                 if (!isEmpty(oneShipping)) {
-                    if (!isEmpty(oneShipping.dataValues.Shippings)) {
+                    if (!isEmpty(oneShipping.dataValues.shippings)) {
                         return super.httpSuccessCollectionResponse(req, res, 
-                            oneShipping.dataValues.Shippings);
+                            oneShipping.dataValues.shippings);
                     }
                     return super.httpErrorResponse(req, res, 'SHP_02', 
                     `Don't exist Shipping for the Shipping 

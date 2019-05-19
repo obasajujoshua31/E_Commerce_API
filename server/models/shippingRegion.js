@@ -11,13 +11,13 @@ export default (sequelize, Sequelize) => {
     },
   };
 
-  const shippingRegion = sequelize.define("Shipping_Region", shippingRegionSchema, {
+  const shippingRegion = sequelize.define("shipping_region", shippingRegionSchema, {
     freezeTableName: true,
     timestamps: false
   });
 
   shippingRegion.associate = db => {
-    shippingRegion.hasMany(db.Shipping, {
+    shippingRegion.hasMany(db.shipping, {
       foreignKey: 'shipping_region_id',
       target: 'shipping_region_id'
     });

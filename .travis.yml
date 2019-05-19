@@ -8,10 +8,8 @@ services:
     - mysql
     - redis-server
 before_install:
-  - mysql -e 'CREATE DATABASE myapp_test;'
+  - mysql -e 'CREATE DATABASE e_commerce;'
 install:
   - npm install
 script:
   - yarn test
-after_success:
-  - yarn coverage

@@ -1,17 +1,17 @@
 import isEmpty from 'lodash.isempty';
 import models from '../models';
 
-const { Tax } = models;
+const { tax } = models;
 
 export default async (req, res, next) => {
     const { tax_id } = req.body;
 
-    const tax = await Tax.findOne({
+    const foundtax = await tax.findOne({
         where: {
             tax_id
         }
     });
-    if (!isEmpty(tax)) {
+    if (!isEmpty(foundtax)) {
         return next();
     }
     return res.status(400).json({

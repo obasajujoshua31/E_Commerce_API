@@ -24,13 +24,13 @@ export default (sequelize, Sequelize) => {
     },
   };
 
-  const review = sequelize.define("Review", reviewSchema, {
+  const review = sequelize.define("review", reviewSchema, {
     freezeTableName: true,
     timestamps: false
   });
 
   review.associate = db => {
-    review.belongsTo(db.Product, {
+    review.belongsTo(db.product, {
       foreignKey: 'product_id',
       target: 'product_id'
     });

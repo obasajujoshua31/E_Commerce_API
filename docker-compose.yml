@@ -1,0 +1,39 @@
+version: '3'
+services:   
+  app:
+    container_name: joshua_e_commerce
+    restart: always
+    build: .
+    ports:
+      - '2000:2000'
+    environment:
+      - NODE_ENV=development
+      - REDIS_HOST=redis
+      - HOST=db
+      - DATABASE=e_commerce
+      - PASSWORD=electrical
+      - USERNAME=root
+    links:  
+      - redis
+      - db
+  redis: 
+    image: redis
+    hostname: redis
+    ports: 
+      - '6379:6379'
+    expose:
+      - 6379
+  db:
+    image: mysql:8.0.2
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: electrical
+      MYSQL_DATABASE: e_commerce
+      MYSQL_USER: root   
+    ports: 
+      - '3306:3306'
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080

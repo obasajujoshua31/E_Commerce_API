@@ -24,8 +24,8 @@ export default class OrderController extends BaseController {
             const cart = await ShoppingCartService.getProducts(cart_id);
 
                 const totalCount = cart.reduce((total_amount, item) => {
-                    return total_amount += item.quantity * item.Product.price - 
-                        item.Product.discounted_price;
+                    return total_amount += item.quantity * item.product.price - 
+                        item.product.discounted_price;
                 }, 0);
 
                 const order = await OrderService.createOrder({

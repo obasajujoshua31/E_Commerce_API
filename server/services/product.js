@@ -2,19 +2,19 @@ import models from '../models';
 import BaseService from './base';
 
 
-const { Product, Product_Category, Category, Department, Review } = models;
+const { product, product_category, category, department, review } = models;
 
 export default class ProductService extends BaseService {
     static async getOneProduct (id) {
-        return await this.findOne(Product, { product_id: id });
+        return await this.findOne(product, { product_id: id });
     }
 
     static async getAllProducts(option) {
-        return await this.findAll(Product, option);
+        return await this.findAll(product, option);
     }
 
     static get size() {
-        return this.count(Product);
+        return this.count(product);
     }
 
     static async getCategories(id, paginationOption) {
@@ -22,45 +22,45 @@ export default class ProductService extends BaseService {
             category_id: id
         },
             ...paginationOption,
-            include: [{ model: Product }] };
-        return this.findAll(Product_Category, option);
+            include: [{ model: product }] };
+        return this.findAll(product_category, option);
     }
 
     static async countAllCategories(id) {
-        return this.count(Product_Category, { where: {
+        return this.count(product_category, { where: {
             category_id: id
         } });
     }
 
 
     static async getDepartments(id) {
-        return this.findAll(Category, {
+        return this.findAll(category, {
             where: {
                 department_id: id
             },
             include: [{
-                model: Product,
+                model: product,
                 
             }]
         });
     }
 
     static async getLocations(id) {
-        return this.findOne(Product_Category, { product_id: id }, [{
-            model: Category,
+        return this.findOne(product_category, { product_id: id }, [{
+            model: category,
             include: [{
-                model: Department
+                model: department
             }]
         }] );
     }
 
     static async getReviews(id) {
-        return this.findAll(Review, { where: {
+        return this.findAll(review, { where: {
             product_id: id
         } });
     }
 
     static createReview(payload) {
-        return this.save(Review, payload);
+        return this.save(review, payload);
     }
 }

@@ -14,13 +14,13 @@ export default (sequelize, Sequelize) => {
     },
   };
 
-  const shipping = sequelize.define("Shipping", shippingSchema, {
+  const shipping = sequelize.define("shipping", shippingSchema, {
     freezeTableName: true,
     timestamps: false
   });
 
   shipping.associate = db => {
-    shipping.belongsTo(db.Shipping_Region, {
+    shipping.belongsTo(db.shipping_region, {
       foreignKey: 'shipping_region_id',
       target: 'shipping_region_id'
     });

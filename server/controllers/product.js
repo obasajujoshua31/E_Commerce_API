@@ -44,7 +44,8 @@ export default class ProductController extends BaseController {
 static getProductsByCategory() {
     return this.asyncFunction(async (req, res) => {
         const { category_id } = req.params;
-        const { numberOfPage, pageLimit, descriptionLength } = getParams(req.query);
+        const params = getParams(req.query);
+        const { numberOfPage, pageLimit, descriptionLength } = params;
     
         if (isValid(category_id).valid) {
                 const allProducts = 
@@ -74,16 +75,17 @@ static getProductsByCategory() {
     static getProductsByDepartment() {
         return this.asyncFunction(async (req, res) => {
             const { department_id } = req.params;
-        const { numberOfPage, pageLimit, descriptionLength } = getParams(req.query);
+            const params = getParams(req.query);
+            const { numberOfPage, pageLimit, descriptionLength } = params;
         if (isValid(department_id).valid) {
          const allProducts = await ProductService.getDepartments(department_id);
                 if (!isEmpty(allProducts)) {
                     const allAvailableProducts = 
                         getAllAvailableProducts(allProducts, descriptionLength, null);
                     const count = allAvailableProducts.length;
-                    const params = paginate({ numberOfPage, pageLimit });
+                    const pageParams = paginate({ numberOfPage, pageLimit });
                     const resultJSON = 
-                        manualPaginate(allAvailableProducts, params);
+                        manualPaginate(allAvailableProducts, pageParams);
                         return this.httpSuccessEachResponse(req, res, { count, rows: resultJSON });
                 }
                 return this.httpErrorResponse(req, res, 'PR0_2', 

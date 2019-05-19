@@ -3,23 +3,23 @@ import BaseService from './base';
 import { removePassword } from '../utils/password';
 
 
-const { Customer, Shipping_Region } = models;
+const { customer } = models;
 
 export default class CustomerService extends BaseService {
     static async getCustomer (option) {
-        return await this.findOne(Customer, { [Object.keys(option)]: Object.values(option) });
+        return await this.findOne(customer, { [Object.keys(option)]: Object.values(option) });
     }
 
     static async createCustomer(payload) {
-        const customer = await this.save(Customer, payload);
-        return await this.findOne(Customer, { customer_id: customer.customer_id });
+        const newcustomer = await this.save(customer, payload);
+        return await this.findOne(customer, { customer_id: newcustomer.customer_id });
     }
 
-    static getCustomerJSON(customer) {
+    static getCustomerJSON(customerData) {
         return { customer: {
-            schema: removePassword(customer.dataValues),
+            schema: removePassword(customerData.dataValues),
         },
-        accessToken: `Bearer ${customer.generateToken()}`,
+        accessToken: `Bearer ${customerData.generateToken()}`,
         expires_in: '24h' 
                     
      };

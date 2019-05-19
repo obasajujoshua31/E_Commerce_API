@@ -3,24 +3,24 @@ import BaseService from './base';
 import { SAVE_FOR_LATER, MOVE_TO_CART } from '../utils/constants';
 
 
-const { Shopping_Cart, Product } = models;
+const { shopping_cart, product } = models;
 
 export default class ShoppingCartService extends BaseService {
     static async getProducts(cart_id, option = true) {
-       return this.findAll(Shopping_Cart, {
+       return this.findAll(shopping_cart, {
         where: {
             cart_id,
             buy_now: MOVE_TO_CART
         },
         include: option ? 
         [{
-            model: Product
+            model: product
         }] : []
     });
     }
 
     static async getOneCart(cart_id, attributes, product_id) {
-        return Shopping_Cart.findOne({
+        return shopping_cart.findOne({
             where: {
                 cart_id,
                 attributes,
@@ -30,11 +30,11 @@ export default class ShoppingCartService extends BaseService {
     }
 
     static async createCart(payload) {
-        return this.save(Shopping_Cart, payload);
+        return this.save(shopping_cart, payload);
     }
     
     static async dropCart(cart_id) {
-        return await Shopping_Cart.destroy({
+        return await shopping_cart.destroy({
             where: {
                 cart_id
             }
@@ -42,13 +42,13 @@ export default class ShoppingCartService extends BaseService {
     }
 
     static getAllSavedItems(cart_id) {
-        return Shopping_Cart.findAll({
+        return shopping_cart.findAll({
             where: {
                 cart_id,
                 buy_now: SAVE_FOR_LATER
             },
             include: [{
-                model: Product
+                model: product
             }]
         });
     }

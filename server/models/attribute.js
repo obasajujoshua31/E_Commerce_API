@@ -11,13 +11,13 @@ export default (sequelize, Sequelize) => {
     },
   };
 
-  const attribute = sequelize.define("Attribute", attributeSchema, {
+  const attribute = sequelize.define("attribute", attributeSchema, {
     freezeTableName: true,
     timestamps: false
   });
 
   attribute.associate = db => {
-    attribute.hasMany(db.Attribute_Value, {
+    attribute.hasMany(db.attribute_value, {
       foreignKey: 'attribute_id',
       target: 'attribute_id'
     });

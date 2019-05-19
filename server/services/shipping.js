@@ -2,19 +2,19 @@ import models from '../models';
 import BaseService from './base';
 
 
-const { Shipping, Shipping_Region } = models;
+const { shipping, shipping_region } = models;
 
 export default class ShippingService extends BaseService {
     static async getOneShipping (id) {
-        return await this.findOne(Shipping_Region, { 
+        return await this.findOne(shipping_region, { 
                 shipping_region_id: id },
             [{
-                model: Shipping,
+                model: shipping,
             }]
         );
         }
 
     static async getAllShippings() {
-        return await this.findAll(Shipping);
+        return await this.findAll(shipping);
     }
 }

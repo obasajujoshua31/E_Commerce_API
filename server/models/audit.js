@@ -18,13 +18,13 @@ export default (sequelize, Sequelize) => {
       },
     };
   
-    const audit = sequelize.define("Audit", auditSchema, {
+    const audit = sequelize.define("audit", auditSchema, {
       freezeTableName: true,
       timestamps: false
     });
   
     audit.associate = db => {
-      audit.belongsTo(db.Orders, {
+      audit.belongsTo(db.orders, {
         foreignKey: 'order_id',
         target: 'order_id',
         onDelete: 'CASCADE'

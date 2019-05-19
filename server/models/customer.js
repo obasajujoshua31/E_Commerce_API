@@ -58,7 +58,7 @@ export default (sequelize, Sequelize) => {
     }
   };
 
-  const customer = sequelize.define("Customer", customerSchema, {
+  const customer = sequelize.define("customer", customerSchema, {
     freezeTableName: true,
     timestamps: false,
     hooks: {
@@ -71,7 +71,7 @@ export default (sequelize, Sequelize) => {
   
 
   customer.associate = db => {
-    customer.hasOne(db.Shipping_Region, {
+    customer.hasOne(db.shipping_region, {
       foreignKey: 'shipping_region_id',
       target: 'shipping_region_id',
       onDelete: 'CASCADE'

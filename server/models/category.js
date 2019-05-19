@@ -15,13 +15,13 @@ export default (sequelize, Sequelize) => {
     },
   };
 
-  const category = sequelize.define("Category", categorySchema, {
+  const category = sequelize.define("category", categorySchema, {
     freezeTableName: true,
     timestamps: false,
 
   });
     category.associate = db => {
-      category.belongsTo(db.Department, {
+      category.belongsTo(db.department, {
         foreignKey: 'department_id',
         target: 'department_id',
       });
@@ -31,10 +31,10 @@ export default (sequelize, Sequelize) => {
       //   target: 'category_id',
       // });
 
-      category.belongsToMany(db.Product, {
+      category.belongsToMany(db.product, {
         foreignKey: 'category_id',
         otherKey: 'product_id',
-        through: 'Product_Category'
+        through: 'product_category'
       });
     };
   return category;

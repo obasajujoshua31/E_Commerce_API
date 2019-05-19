@@ -33,21 +33,21 @@ export default (sequelize, Sequelize) => {
     }
   };
 
-  const product = sequelize.define("Product", productSchema, {
+  const product = sequelize.define("product", productSchema, {
     freezeTableName: true,
     timestamps: false
   });
 
   product.associate = db => {
-    product.hasMany(db.Shopping_Cart, {
+    product.hasMany(db.shopping_cart, {
       foreignKey: 'product_id',
       targetKey: 'product_id'
     });
 
-    product.belongsToMany(db.Category, {
+    product.belongsToMany(db.category, {
       foreignKey: 'product_id',
       otherKey: 'category_id',
-      through: 'Product_Category'
+      through: 'product_category'
     });
   };
   return product;

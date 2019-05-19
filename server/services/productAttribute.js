@@ -2,17 +2,17 @@ import models from '../models';
 import BaseService from './base';
 
 
-const { Product_Attribute, Attribute_Value, Attribute } = models;
+const { product_attribute, attribute_value, attribute } = models;
 
 export default class ProductAttributeService extends BaseService {
     static async getAllAttributeValues(id) {
-        return await this.findAll(Product_Attribute, { where: {
+        return await this.findAll(product_attribute, { where: {
             product_id: id
         },
         include: [{
-            model: Attribute_Value,
+            model: attribute_value,
               include: [{
-                model: Attribute
+                model: attribute
             }]
         }]
      });

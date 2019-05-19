@@ -8,12 +8,12 @@
   "license": "MIT",
   "scripts": {
     "start": "yarn build && node dist/app.js",
-    "build": "yarn clean && babel ./server -d dist",
+    "build": "babel ./server -d dist",
     "clean": "rm -rf dist",
     "test": " jest index.spec.js --coverage --forceExit",
     "serve": "nodemon server/app.js --exec babel-node",
-    "seed": "NODE_ENV=test babel-node migrations/migrate.js",
-    "pretest": "rm -rf db.log &&  yarn seed",
+    "seed": "babel-node migrations/migrate.js",
+    "pretest": "NODE_ENV=test yarn seed",
     "coverage": "cat ./coverage/lcov.info | coveralls"
   },
   "dependencies": {
@@ -57,8 +57,5 @@
     "eslint": "^5.16.0",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.17.2"
-  },
-  "jest": {
-    "verbose": false
   }
 }

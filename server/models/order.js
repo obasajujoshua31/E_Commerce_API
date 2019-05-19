@@ -39,29 +39,29 @@ export default (sequelize, Sequelize) => {
     },
   };
 
-  const order = sequelize.define("Orders", orderSchema, {
+  const order = sequelize.define("orders", orderSchema, {
     freezeTableName: true,
     timestamps: false
   });
 
   order.associate = db => {
-    order.belongsTo(db.Customer, {
+    order.belongsTo(db.customer, {
       foreignKey: 'customer_id',
       target: 'customer_id',
       onDelete: 'CASCADE'
     });
 
-    order.hasOne(db.Shipping, {
+    order.hasOne(db.shipping, {
       foreignKey: 'shipping_id',
       target: 'shipping_id'
     });
 
-    order.hasOne(db.Tax, {
+    order.hasOne(db.tax, {
       foreignKey: 'tax_id',
       target: 'tax_id'
     });
 
-    order.hasMany(db.Order_Detail, {
+    order.hasMany(db.order_detail, {
       foreignKey: 'order_id',
       target: 'order_id'
     });

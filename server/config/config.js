@@ -6,11 +6,17 @@ const
     PRODUCTION_URL, TEST_URL, PASSWORD, HOST, USERNAME, DATABASE } = process.env;
 
 export default {
-development: {
-    url: DATABASE_URL,
-    dialect: DIALECT,
+  development: {
+    database: DATABASE,
+    host: HOST,
+    username: USERNAME,
+    password: PASSWORD,
+    dialect: 'mysql',
+    logging: false,
+    dialectOptions: {
+      multipleStatements: true
+    }
   },
-
   test: {
     database: DATABASE,
     host: HOST,

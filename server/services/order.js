@@ -2,11 +2,11 @@ import models from '../models';
 import BaseService from './base';
 
 
-const { Order_Detail, Orders } = models;
+const { order_detail, orders } = models;
 
 export default class OrderService extends BaseService {
     static async getInfo (order_id) {
-       return await this.findAll(Order_Detail, {
+       return await this.findAll(order_detail, {
            where: {
             order_id, 
            }
@@ -14,7 +14,7 @@ export default class OrderService extends BaseService {
     }
 
     static async confirmOrderAndCustomer (order_id, customer_id) {
-        return await this.findAll(Orders, {
+        return await this.findAll(orders, {
             where: {
              order_id, 
              customer_id
@@ -23,11 +23,11 @@ export default class OrderService extends BaseService {
      }
 
     static async createOrder(payload) {
-        return await this.save(Orders, payload);
+        return await this.save(orders, payload);
     }
 
     static async createOrderDetails(allItems) {
-       return await Order_Detail.bulkCreate(allItems, {
+       return await order_detail.bulkCreate(allItems, {
             fields: ['item_id', 'order_id', 'order_id', 'product_id', 
             'attributes', 'product_name', 'quantity', 'unit_cost'],
             updateOnDuplicate: ['item_id']
@@ -35,17 +35,17 @@ export default class OrderService extends BaseService {
     }
 
     static async getOrdersByCustomer(customer_id) {
-        return await this.findAll(Orders, {
+        return await this.findAll(orders, {
             where: {
                 customer_id
             },
             include: [{
-                model: Order_Detail
+                model: order_detail
             }]
         });
     }
 
     static async getOrderDetail(order_id) {
-        return await this.findOne(Orders, { order_id });
+        return await this.findOne(orders, { order_id });
     }
 }

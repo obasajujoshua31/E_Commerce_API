@@ -22,20 +22,20 @@ export default (sequelize, Sequelize) => {
       },
     };
   
-    const orderDetail = sequelize.define("Order_Detail", orderDetailSchema, {
+    const orderDetail = sequelize.define("order_detail", orderDetailSchema, {
       freezeTableName: true,
       timestamps: false
     });
   
     orderDetail.removeAttribute('id'),
     orderDetail.associate = db => {
-      orderDetail.belongsTo(db.Orders, {
+      orderDetail.belongsTo(db.orders, {
         foreignKey: 'order_id',
         target: 'order_id',
         onDelete: 'CASCADE'
       });
   
-      orderDetail.belongsTo(db.Product, {
+      orderDetail.belongsTo(db.product, {
         foreignKey: 'product_id',
         target: 'product_id'
       });

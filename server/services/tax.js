@@ -2,14 +2,14 @@ import models from '../models';
 import BaseService from './base';
 
 
-const { Tax } = models;
+const { tax } = models;
 
 export default class TaxService extends BaseService {
     static async getTax (id) {
-        return await this.findOne(Tax, { tax_id: id });
+        return await this.findOne(tax, { tax_id: id });
     }
 
     static async getAllTaxes() {
-        return await this.findAll(Tax);
+        return await this.findAll(tax);
     }
 }

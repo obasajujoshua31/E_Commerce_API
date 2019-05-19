@@ -15,7 +15,7 @@ export default (sequelize, Sequelize) => {
     },
   };
 
-  const department = sequelize.define("Department", departmentSchema, {
+  const department = sequelize.define("department", departmentSchema, {
     freezeTableName: true,
     timestamps: false
   });

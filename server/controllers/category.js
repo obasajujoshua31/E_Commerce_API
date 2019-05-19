@@ -5,7 +5,7 @@ import CategoryService from '../services/category';
 import paginate from '../utils/getPageParams';
 
 
-const { Category } = models;
+const { category } = models;
 
 class CategoryController extends BaseController {
     static getAllCategories(req, res) {
@@ -16,7 +16,7 @@ class CategoryController extends BaseController {
             
                 const allCategories = await 
                 CategoryService.getAllCategories(paginate({ numberOfPage, pageLimit }));
-                const allTogether = await Category.count();
+                const allTogether = await category.count();
                     const resultJSON = {
                         count: allTogether,
                         rows: allCategories,
@@ -51,8 +51,8 @@ class CategoryController extends BaseController {
                 const allProducts = await CategoryService.getProducts(product_id);
                 if (!isEmpty(allProducts)) {
                     const productCategory = [];
-                    allProducts.forEach((category) => {
-                        productCategory.push(category.Category);
+                    allProducts.forEach((oneCategory) => {
+                        productCategory.push(oneCategory.category);
                     });
                     return this.httpSuccessCollectionResponse(req, res, productCategory);
                 }

@@ -3,17 +3,17 @@ import models from '../models';
 import ShippingService from '../services/shipping';
 
 
-const { Shipping, Shipping_Region } = models;
+const { shipping } = models;
 
 export default async (req, res, next) => {
     const { shipping_id } = req.body;
 
-    const shipping = await Shipping.findOne({
+    const foundshipping = await shipping.findOne({
         where: {
             shipping_id
         }
     });
-    if (!isEmpty(shipping)) {
+    if (!isEmpty(foundshipping)) {
         return next();
     }
     return res.status(400).json({

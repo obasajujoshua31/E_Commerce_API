@@ -36,9 +36,9 @@ export const prepareProducts = (products, order_id) => {
                         order_id,
                         product_id: item.product_id,
                         attributes: item.attributes,
-                        product_name: item.Product.name,
+                        product_name: item.product.name,
                         quantity: item.quantity,
-                        unit_cost: item.Product.price
+                        unit_cost: item.product.price
                     });
                 });
                 return allItems;

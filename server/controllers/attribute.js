@@ -57,9 +57,9 @@ class AttributeController extends BaseController {
                     const allProducts = [];
                     allProductAttributes.forEach((attribute) => {
                         allProducts.push({ attribute_value_id: 
-                            attribute.Attribute_Value.attribute_value_id, 
-                        attribute_value: attribute.Attribute_Value.value, 
-                       attribute_name: attribute.Attribute_Value.Attribute.name
+                            attribute.attribute_value.attribute_value_id, 
+                        attribute_value: attribute.attribute_value.value, 
+                       attribute_name: attribute.attribute_value.attribute.name
                         });
                     });
                     return this.httpSuccessCollectionResponse(req, res, allProducts);

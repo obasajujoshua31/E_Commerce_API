@@ -12,13 +12,13 @@ export default (sequelize, Sequelize) => {
     },
   };
 
-  const attributeValue = sequelize.define("Attribute_Value", attributeValueSchema, {
+  const attributeValue = sequelize.define("attribute_value", attributeValueSchema, {
     freezeTableName: true,
     timestamps: false
   });
 
   attributeValue.associate = db => {
-    attributeValue.belongsTo(db.Attribute, {
+    attributeValue.belongsTo(db.attribute, {
       foreignKey: 'attribute_id',
       target: 'attribute_id'
     });

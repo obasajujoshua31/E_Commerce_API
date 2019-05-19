@@ -14,7 +14,7 @@ export default (sequelize, Sequelize) => {
     }
   };
 
-  const tax = sequelize.define("Tax", taxSchema, {
+  const tax = sequelize.define("tax", taxSchema, {
     freezeTableName: true,
     timestamps: false
   });

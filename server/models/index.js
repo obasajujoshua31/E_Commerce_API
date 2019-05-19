@@ -14,7 +14,7 @@ const config = dbConfig[env];
 
  export const sequelize = env === 'test' ? 
 new Sequelize(config.database, config.username, config.password, config ) :
-new Sequelize(config.url, { logging: false });
+new Sequelize(config.database, config.username, config.password, config);
 
 fs
   .readdirSync(__dirname)

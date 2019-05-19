@@ -2,12 +2,12 @@ import isEmpty from 'lodash.isempty';
 import models from '../models';
 import { isValid } from '../utils/getPageParams';
 
-const { Shopping_Cart } = models;
+const { shopping_cart } = models;
 
 export default async (req, res, next) => {
     const { cart_id } = req.body;
 
-    const cart = await Shopping_Cart.findOne({
+    const cart = await shopping_cart.findOne({
         where: {
             cart_id
         }
@@ -28,7 +28,7 @@ export const findItem = async (req, res, next) => {
     const { item_id } = req.params;
 
     if (isValid(item_id).valid) {
-        const item = await Shopping_Cart.findOne({
+        const item = await shopping_cart.findOne({
             where: {
                 item_id
             }

@@ -30,13 +30,13 @@ export default (sequelize, Sequelize) => {
       },
     };
   
-    const shoppingCart = sequelize.define("Shopping_Cart", shoppingCartSchema, {
+    const shoppingCart = sequelize.define("shopping_cart", shoppingCartSchema, {
       freezeTableName: true,
       timestamps: false
     });
   
     shoppingCart.associate = db => {
-      shoppingCart.belongsTo(db.Product, {
+      shoppingCart.belongsTo(db.product, {
         foreignKey: 'product_id',
         target: 'product_id',
         onDelete: 'CASCADE',

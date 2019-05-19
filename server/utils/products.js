@@ -22,10 +22,10 @@ export default ({ numberOfPage, pageLimit }) => {
      }
      if (option === false) {
       array.forEach((product) => {
-        const productDescription = descriptionLength >= product.Product.description.length
-        ? product.Product.description 
-        : `${product.Product.description.slice(0, descriptionLength)}...`;
-        allAvailableProducts.push({ ...product.Product.dataValues, 
+        const productDescription = descriptionLength >= product.product.description.length
+        ? product.product.description 
+        : `${product.product.description.slice(0, descriptionLength)}...`;
+        allAvailableProducts.push({ ...product.product.dataValues, 
             description: productDescription });
       });
      
@@ -33,7 +33,7 @@ export default ({ numberOfPage, pageLimit }) => {
      }
 
     array.forEach(product => {
-      product.Products.forEach((singleProduct) => {
+      product.products.forEach((singleProduct) => {
           const productDescription = descriptionLength >= 
           singleProduct.description.length
   ? singleProduct.description 
@@ -53,7 +53,7 @@ export default ({ numberOfPage, pageLimit }) => {
     return all;
   };
 
-  const removeProductCategory = ({ Product_Category, ...rest }) => {
+  const removeProductCategory = ({ product_category, ...rest }) => {
     return rest;
   };
 
@@ -64,11 +64,11 @@ export default ({ numberOfPage, pageLimit }) => {
 
 
   export const filterProductsCategories = ({ category_id, 
-                  Category, Category: 
-                    { department_id, Department: { name } } }) => {
+                  category, category: 
+                    { department_id, department: { name } } }) => {
                       return {
                         category_id,
-                        category_name: Category.name,
+                        category_name: category.name,
                         department_id,
                         department_name: name
                       };
