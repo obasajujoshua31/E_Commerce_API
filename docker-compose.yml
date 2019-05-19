@@ -3,6 +3,7 @@ services:
   app:
     container_name: joshua_e_commerce
     restart: always
+    env_file: .env
     build: .
     ports:
       - '2000:2000'
