@@ -31,7 +31,14 @@ export default {
    appSecret: CLIENT_SECRET,
 
    production: {
-     url: PRODUCTION_URL,
-     dialect: DIALECT
-   }
+    database: DATABASE,
+    host: HOST,
+    username: USERNAME,
+    password: PASSWORD,
+    dialect: 'mysql',
+    logging: false,
+    dialectOptions: {
+      multipleStatements: true
+    }
+}
 };
