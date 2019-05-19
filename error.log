@@ -126,6 +126,7 @@
 {"level":"error","message":"Must provide source or customer.","service":"user-service"}
 {"level":"error","message":"Must provide source or customer.","service":"user-service"}
 {"level":"error","message":"No such token: joshua","service":"user-service"}
+<<<<<<< HEAD
 {"level":"error","message":"Table 'sql7292150.Attribute' doesn't exist","service":"user-service"}
 {"level":"error","message":"Table 'sql7292150.Attribute' doesn't exist","service":"user-service"}
 {"level":"error","message":"Table 'sql7292150.Attribute' doesn't exist","service":"user-service"}
@@ -265,3 +266,5 @@
 {"level":"error","message":"Table 'myapp_test.customer' doesn't exist","service":"user-service"}
 {"level":"error","message":"Table 'myapp_test.customer' doesn't exist","service":"user-service"}
 {"level":"error","message":"Table 'myapp_test.customer' doesn't exist","service":"user-service"}
+=======
+>>>>>>> 3dcd65643a738c6993270df1b4b901c32bd10939
