@@ -1,9 +1,5 @@
 -- -- Create tshirtshop tables
 -- Create department table
-
-DROP DATABASE IF EXISTS e_commerce;
-CREATE DATABASE e_commerce;
-USE e_commerce;
 CREATE TABLE `department` (
   `department_id` INT            NOT NULL  AUTO_INCREMENT,
   `name`          VARCHAR(100)   NOT NULL,

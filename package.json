@@ -8,7 +8,7 @@
   "license": "MIT",
   "scripts": {
     "start": "yarn build && node dist/app.js",
-    "build": "yarn seed && babel ./server -d dist",
+    "build": "babel ./server -d dist",
     "clean": "rm -rf dist",
     "test": " jest index.spec.js --coverage --forceExit",
     "serve": "nodemon server/app.js --exec babel-node",
