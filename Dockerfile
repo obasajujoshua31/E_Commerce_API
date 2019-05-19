@@ -12,4 +12,4 @@ RUN yarn install
 
 EXPOSE  2000
 
-CMD [ "yarn", "test" ]
+CMD [ "yarn", "start" ]
