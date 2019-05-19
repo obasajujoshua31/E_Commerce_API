@@ -12,8 +12,8 @@ const db = {};
 const config = dbConfig[env];
 
 
- export const sequelize = env === 'test' ? 
-new Sequelize(config.database, config.username, config.password, config ) :
+ export const sequelize = env === 'production' ? 
+new Sequelize(config.url, config) :
 new Sequelize(config.database, config.username, config.password, config);
 
 fs

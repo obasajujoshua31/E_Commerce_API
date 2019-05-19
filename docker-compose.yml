@@ -8,6 +8,7 @@ services:
     ports:
       - '2000:2000'
     environment:
+      - NODE_ENV=development
       - REDIS_HOST=redis
       - HOST=db
       - DATABASE=e_commerce

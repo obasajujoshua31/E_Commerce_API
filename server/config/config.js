@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 const 
   { CLIENT_SECRET, DIALECT, DATABASE_URL, 
-    PRODUCTION_URL, TEST_URL, PASSWORD, HOST, USERNAME, DATABASE } = process.env;
+    PRODUCTION_URL, TEST_URL, PASSWORD, HOST, USERNAME, DATABASE, JAWSDB_URL } = process.env;
 
 export default {
   development: {
@@ -31,10 +31,7 @@ export default {
    appSecret: CLIENT_SECRET,
 
    production: {
-    database: DATABASE,
-    host: HOST,
-    username: USERNAME,
-    password: PASSWORD,
+    url: JAWSDB_URL,
     dialect: 'mysql',
     logging: false,
     dialectOptions: {
