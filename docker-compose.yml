@@ -19,7 +19,7 @@ services:
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: electrical
-      MYSQL_DATABASE: e_commerce
+      MYSQL_DATABASE: e_commerce_test
       MYSQL_USER: root   
     ports: 
       - '3306:3306'

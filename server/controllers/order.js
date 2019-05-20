@@ -2,7 +2,7 @@ import isEmpty from 'lodash.isempty';
 import BaseController from './base';
 import OrderService from '../services/order';
 import ShoppingCartService from '../services/shoppingCart';
-import { isValid } from '../utils/getPageParams';
+import queue from '../worker/worker';
 import formatOrder, { prepareOrderInfo, prepareProducts } from '../utils/formatOrder';
 
 
@@ -19,8 +19,8 @@ export default class OrderController extends BaseController {
 
     static postAnOrder() {
         return this.asyncFunction(async (req, res) => {
-            const { body: { cart_id, shipping_id, tax_id }, user: { customer_id } } = req;
-
+            const { body: { cart_id, shipping_id, tax_id }, user: { customer_id }, customer } = req;
+            
             const cart = await ShoppingCartService.getProducts(cart_id);
 
                 const totalCount = cart.reduce((total_amount, item) => {
@@ -38,6 +38,7 @@ export default class OrderController extends BaseController {
                 const order_id = order.get('order_id');
                 const allItems = prepareProducts(cart, order_id);
                 await OrderService.createOrderDetails(allItems);
+                queue.create('send-notification', { email: customer.email, payload: allItems });
                 const resultJSON = {
                     orderId: order_id
                 };

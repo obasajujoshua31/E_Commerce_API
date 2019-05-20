@@ -11,9 +11,27 @@ import orderRouter from './order';
 import shoppingCartRouter from './shoppingCart';
 import paymentRouter from './payment';
 import CacheStorage from '../middlewares/checkCache';
+import queue from '../worker/worker';
 
+const data = [
+    {
+
+        item_id: '6',
+        order_id: 8,
+        product_id: 5,
+        attributes: 'XL',
+        name: 'A big phone',
+        quantity: 34,
+        unit_cost: '$234'
+    }
+];
 const mainAppRouter = Router();
 
+mainAppRouter.get('/', (req, res) => {
+    return res.status(200).json({
+        message: 'Welcome to Joshua E_Commerce API'
+    });
+});
 mainAppRouter.use('/departments', CacheStorage.checkCache, departmentRouter);
 mainAppRouter.use('/tax', CacheStorage.checkCache, taxRouter);
 mainAppRouter.use('/shipping/regions', CacheStorage.checkCache, shippingRouter);

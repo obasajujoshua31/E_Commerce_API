@@ -11,7 +11,6 @@ const env = process.env.NODE_ENV || 'development';
 const db = {};
 const config = dbConfig[env];
 
-
  export const sequelize = env === 'production' ? 
 new Sequelize(config.url, config) :
 new Sequelize(config.database, config.username, config.password, config);
