@@ -10,17 +10,6 @@ const stub = (response = Promise.resolve({ name: 'Joshua', amount: 400 })) => {
 const reset = () => {
     sinon.reset();
 };
-// const error = () => {
-//     throw {
-//        message: 'User is not authenticated',
-//        type: 'StripeInvalidRequestError'
-//     };
-// };
-const makeError = () => {
-    const error = new Error('User is not authenticated');
-    error.type = 'StripeInvalidRequestError';
-    return error;
-};
 
 
 const baseUrl = '/stripe';

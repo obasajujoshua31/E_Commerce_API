@@ -1,6 +1,9 @@
 import kue from 'kue';
+import client from './cache';
 
 
-export default kue.createQueue({
-    redis: process.env.REDIS_URL
-});
+kue.redis.createClient = function() {
+    return client;
+};
+
+export default kue.createQueue();
