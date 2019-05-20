@@ -3,7 +3,9 @@ import dotenv from 'dotenv';
 dotenv.config();
 const 
   { CLIENT_SECRET, DIALECT, DATABASE_URL, 
-    PRODUCTION_URL, TEST_URL, PASSWORD, HOST, USERNAME, DATABASE, JAWSDB_URL } = process.env;
+    PRODUCTION_URL, TEST_URL, PASSWORD, HOST, USERNAME, DATABASE, JAWSDB_URL,
+    TEST_DATABASE
+  } = process.env;
 
 export default {
   development: {
@@ -18,7 +20,7 @@ export default {
     }
   },
   test: {
-    database: DATABASE,
+    database: TEST_DATABASE,
     host: HOST,
     username: USERNAME,
     password: PASSWORD,

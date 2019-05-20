@@ -6,6 +6,7 @@ import findShipping from '../middlewares/findShipping';
 import findTax from '../middlewares/findTax';
 import findCart from '../middlewares/findCart';
 import confirmOrder from '../middlewares/findOrder';
+import findCustomer from '../middlewares/findCustomer';
 
 
 const orderRouter = Router();
@@ -17,7 +18,7 @@ confirmOrder,
 OrderController.getOrderInfo());
 
 orderRouter.post('/', CheckToken.verifyUser, validate, findCart,
-   findShipping, findTax, OrderController.postAnOrder());
+   findShipping, findTax, findCustomer, OrderController.postAnOrder());
 
 orderRouter.get('/shortDetail/:order_id', 
 CheckToken.verifyUser, confirmOrder, OrderController.getOrderShortDetail());

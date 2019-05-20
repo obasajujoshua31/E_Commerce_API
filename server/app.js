@@ -3,6 +3,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import logger from 'morgan';
 import mainAppRouter from './routes';
+import rsmq from './config/queue';
 
 
 dotenv.config();
