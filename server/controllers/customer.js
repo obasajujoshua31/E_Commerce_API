@@ -5,6 +5,9 @@ import { removePassword } from '../utils/password';
 import verifyFacebookToken from '../utils/verifyFacebookToken';
 
 export default class CustomerController extends BaseController {
+     /**
+     * @returns {Promise<Function>} createCustomer
+     */
     static registerCustomer() {
         return this.asyncFunction(async (req, res) => {
             const { name, email, password } = req.body;
@@ -19,6 +22,9 @@ export default class CustomerController extends BaseController {
     }
 
 
+     /**
+     * @returns {Promise<Function>} loginCustomer
+     */
     static loginCustomer() {
         return this.asyncFunction(async (req, res) => {
             const { email, password } = req.body;
@@ -39,6 +45,10 @@ export default class CustomerController extends BaseController {
         });
     }
 
+
+     /**
+     * @returns {Promise<Function>} getCustomer
+     */
     static getCustomer() {
         return this.asyncFunction(async (req, res) => {
             const { customer } = req;
@@ -47,7 +57,11 @@ export default class CustomerController extends BaseController {
                     req, res, removePassword(customer.dataValues), false);
         });
     }
+    
 
+     /**
+     * @returns {Promise<Function>} loginViaFacebook
+     */
     static facebookLogin() {
       return this.asyncFunction(async (req, res) => {
         const { access_token } = req.body;
@@ -67,6 +81,10 @@ export default class CustomerController extends BaseController {
       }, true);
     }
 
+
+     /**
+     * @returns {Promise<Function>} updateCustomerBiodata
+     */
     static updateCustomerBiodata() {
         return this.asyncFunction(async (req, res) => {
             const { customer } = req;
@@ -76,6 +94,10 @@ export default class CustomerController extends BaseController {
         });
     }
 
+
+     /**
+     * @returns {Promise<Function>} updateCustomerCreditCard
+     */
     static updateCustomerCreditCard() {
         return this.asyncFunction(async (req, res) => {
             const { customer } = req;
@@ -85,6 +107,10 @@ export default class CustomerController extends BaseController {
         });
     }
 
+
+     /**
+     * @returns {Promise<Function>} updateCustomerAddress
+     */
     static updateCustomerAddress() {
         return this.asyncFunction(async (req, res) => {
             const { customer } = req;

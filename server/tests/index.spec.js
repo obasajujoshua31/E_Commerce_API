@@ -6,6 +6,5 @@ import './controllers/department.spec';
 import './controllers/customers.spec';
 import './controllers/product.spec';
 import './controllers/shoppingCart.spec';
-import './controllers/orders.spec';
+import './controllers/checkout.spec';
 import './controllers/app.spec';
-import './controllers/payment.spec';

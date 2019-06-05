@@ -84,20 +84,23 @@
       }
     ],
     "valid-jsdoc": [
-      0,
+      "error",
       {
         "requireReturn": false,
         "requireReturnType": true,
         "requireParamDescription": false,
         "requireReturnDescription": true
       }],
-      "require-jsdoc": [0, {
-          "require": {
-              "FunctionDeclaration": true,
-              "MethodDefinition": true,
-              "ClassDeclaration": true
-          }
-      }]
+
+        "require-jsdoc": ["error", {
+            "require": {
+                "FunctionDeclaration": true,
+                "MethodDefinition": true,
+                "ClassDeclaration": false,
+                "ArrowFunctionExpression": false,
+                "FunctionExpression": false
+            }
+        }]
   },
   "settings": {
     "import/resolver": {

@@ -1,5 +1,9 @@
 import request from 'supertest';
+import sinon from 'sinon';
 import app from '../../app';
+import stripe from '../../utils/charge';
+
+sinon.stub(stripe, 'makePayment').returns({ name: 'Joshua', amount: 400 });
 
  const loginResponse = async (email = 'test@test.com', password = '12345') => {
     return await request(app).post('/customers/login').send({
@@ -24,6 +28,7 @@ import app from '../../app';
  })();
 
  const orderUrl = '/orders';
+ const baseUrl = '/stripe';
 
 describe('/Order Routes', () => {
     it('should return 200 to post an order for a register', async () => {
@@ -169,5 +174,28 @@ describe('/Order Routes', () => {
             .get(`${orderUrl}/shortDetail/${order_id}`)
             .set({ USER_KEY: token });
         expect(response.statusCode).toBe(400);
+    });
+   });
+
+   describe('Payment Routes', () => {
+    it('should return 400 for a post request without items', async() => {
+        const response = await request(app)
+           .post(`${baseUrl}/charge`);
+           expect(response.statusCode).toBe(400);
+    });
+   
+    it('should return a status Code of 200 for a valid input credentials', async () => {
+       const response = await request(app)
+           .post(`${baseUrl}/charge`)
+           .send({ amount: 400, description: 'Joshua', stripeToken: 'joshua', currency: 'USD', order_id });
+           expect(response.statusCode).toBe(200);
+    });
+   
+    it(`should return a status Code of 200 for a 
+       valid input credentials without currency`, async () => {
+       const response = await request(app)
+           .post(`${baseUrl}/charge`)
+           .send({ amount: 400, description: 'Joshua', stripeToken: 'joshua', order_id });
+           expect(response.statusCode).toBe(200);
     });
    });

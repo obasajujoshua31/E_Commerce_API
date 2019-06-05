@@ -3,6 +3,8 @@ export default (sequelize, Sequelize) => {
       item_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
+        primaryKey: true,
+        autoIncrement: true,
       },
       attributes: {
         type: Sequelize.STRING,

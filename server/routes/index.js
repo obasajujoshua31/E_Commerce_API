@@ -13,20 +13,9 @@ import paymentRouter from './payment';
 import CacheStorage from '../middlewares/checkCache';
 import queue from '../worker/worker';
 
-const data = [
-    {
-
-        item_id: '6',
-        order_id: 8,
-        product_id: 5,
-        attributes: 'XL',
-        name: 'A big phone',
-        quantity: 34,
-        unit_cost: '$234'
-    }
-];
 const mainAppRouter = Router();
 
+// Main App Router
 mainAppRouter.get('/', (req, res) => {
     return res.status(200).json({
         message: 'Welcome to Joshua E_Commerce API'

@@ -1,6 +1,17 @@
 import isEmpty from 'lodash.isempty';
 import OrderService from '../services/order';
 
+
+/**
+ * @description This method calls 
+ * orderService to check whether 
+ * the customer has order with the given order_id
+ * it returns response based on the result
+ * @param  {object} req
+ * @param  {object} res
+ * @param  {Function} next
+ * @returns {object} Server Response
+ */
 export default async (req, res, next) => {
     const { params: { order_id }, user: { customer_id } } = req;
 

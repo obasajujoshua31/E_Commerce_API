@@ -216,16 +216,21 @@ export const facebookSchema = Joi.object().keys({
   access_token
 });
 
+const order_id = Joi.number()
+.integer()
+.required()
+.label('order_id');
+
 export const orderSchema = Joi.object().keys({
   cart_id,
   shipping_id,
   tax_id
 });
 
-
 export const paymentSchema = Joi.object().keys({
   amount,
   description,
   stripeToken,
-  currency
+  currency,
+  order_id
 });

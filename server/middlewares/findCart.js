@@ -4,6 +4,15 @@ import { isValid } from '../utils/getPageParams';
 
 const { shopping_cart } = models;
 
+/**
+ * @description This method searches 
+ * the shopping cart table given 
+ * the cart_id and returns response if shopping cart is found or not
+ * @param  {object} req
+ * @param  {object} res
+ * @param  {Function} next
+ * @returns {object} Server Response
+ */
 export default async (req, res, next) => {
     const { cart_id } = req.body;
 
@@ -23,7 +32,15 @@ export default async (req, res, next) => {
         }
     });
 };
-
+/**
+ * @description This method searches 
+ * the shopping cart table where 
+ * item_id matches the item_id, it returns response based on whether the item is found or not
+ * @param  {object} req
+ * @param  {object} res
+ * @param  {Function} next
+ * @returns {object} Server Response
+ */
 export const findItem = async (req, res, next) => {
     const { item_id } = req.params;
 

@@ -7,18 +7,27 @@ import { MOVE_TO_CART, SAVE_FOR_LATER } from '../utils/constants';
 
 
 export default class ShoppingCart extends BaseController {
+    /**
+     * @returns {Function} uniquieId
+     */
     static generateUniqueId() {
         return this.asyncFunction((req, res) => {
             res.status(200).json({
+                // generate cartId
                 cart_id: generateId()
             });
         });
     }
 
 
+     /**
+     * @returns {Promise<Function>} addProducts To Cart
+     */
     static addProductToCart() {
         return this.asyncFunction(async(req, res) => {
             const { body: { cart_id, product_id, attributes } } = req;
+
+            // check  cart
             const cart = await ShoppingCartService.getOneCart(cart_id, attributes, product_id);
             
             if (isEmpty(cart)) {
@@ -34,12 +43,18 @@ export default class ShoppingCart extends BaseController {
                 await cart.increment('quantity');
             }
            
+            // get products in shopping cart
             const allProductsInCart = await ShoppingCartService.getProducts(cart_id);
+
+            // send http response
             return this.httpSuccessCollectionResponse(
                 req, res, formatCart(allProductsInCart), false);
         });
     }
 
+     /**
+     * @returns {Promise<Function>} getItems from cart
+     */
     static getItemsFromCart() {
         return this.asyncFunction(async(req, res) => {
             const { cart_id } = req.params;
@@ -53,6 +68,10 @@ export default class ShoppingCart extends BaseController {
         });
     }
 
+
+     /**
+     * @returns {Promise<Function>} updateItem in cart
+     */
     static updateItemInCart() {
         return this.asyncFunction(async (req, res) => {
            const { body: { quantity }, item } = req;
@@ -63,6 +82,10 @@ export default class ShoppingCart extends BaseController {
     });
 }
 
+
+     /**
+     * @returns {Promise<Function>} getTotalAmountFromCart
+     */
     static getTotalAmountFromCart() {
         return this.asyncFunction(async (req, res) => {
             const { cart_id } = req.params;
@@ -83,6 +106,10 @@ export default class ShoppingCart extends BaseController {
         });
     }
 
+
+     /**
+     * @returns {Promise<Function>} saveProductForLater
+     */
     static saveProductForLater() {
         return this.asyncFunction(async(req, res) => {
             const { item } = req;
@@ -91,6 +118,10 @@ export default class ShoppingCart extends BaseController {
         });
     }
 
+
+     /**
+     * @returns {Promise<Function>} getItemsSavedForLater
+     */
     static getItemsSavedForLater() {
         return this.asyncFunction(async (req, res) => {
             const { cart_id } = req.params;
@@ -104,6 +135,10 @@ export default class ShoppingCart extends BaseController {
         });
     }
 
+
+     /**
+     * @returns {Promise<Function>} moveToCart
+     */
     static moveToCart() {
         return this.asyncFunction(async (req, res) => {
             const { item } = req;
@@ -112,6 +147,10 @@ export default class ShoppingCart extends BaseController {
         });
     }
 
+
+     /**
+     * @returns {Promise<Function>} removeItemFromCart
+     */
     static removeItemFromCart() {
         return this.asyncFunction(async (req, res) => {
             const { item } = req;
@@ -120,6 +159,10 @@ export default class ShoppingCart extends BaseController {
         });
     }
 
+
+     /**
+     * @returns {Promise<Function>} emptyCart
+     */
     static emptyCart() {
         return this.asyncFunction(async (req, res) => {
             const { cart_id } = req.params;

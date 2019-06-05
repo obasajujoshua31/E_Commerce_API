@@ -3,6 +3,19 @@ import models from '../models';
 
 const { tax } = models;
 
+
+/**
+ * @description This method searches 
+ * the tax table and retrieves 
+ * the row where the tax id 
+ * matches the tax id coming 
+ * from the body, it returns response 
+ * based on the result
+ * @param  {object} req
+ * @param  {object} res
+ * @param  {Function} next
+ * @returns {object} Server Response
+ */
 export default async (req, res, next) => {
     const { tax_id } = req.body;
 

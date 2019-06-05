@@ -3,18 +3,21 @@ export default (sequelize, Sequelize) => {
       audit_id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
+        autoIncrement: true,
         unique: true,
         allowNull: false,
       },
       code: {
-        type: Sequelize.STRING,
+        type: Sequelize.INTEGER,
         allowNull: false
       },
       created_on: {
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        allowNull: false
       },
       message: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
       },
     };
   
