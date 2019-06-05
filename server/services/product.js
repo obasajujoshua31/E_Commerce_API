@@ -126,7 +126,6 @@ export default class ProductService extends BaseService {
         } });
     }
 
-    
     /**
      * @description This creates a new product Review
      * @param  {object} payload
