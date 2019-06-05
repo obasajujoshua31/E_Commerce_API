@@ -7,6 +7,10 @@ services:
     build: .
     ports:
       - '2000:2000'
+    links: 
+      - redis
+      - db
+      - adminer
   redis: 
     image: redis
     hostname: redis

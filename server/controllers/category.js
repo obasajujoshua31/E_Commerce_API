@@ -2,7 +2,7 @@ import isEmpty from 'lodash.isempty';
 import models from '../models';
 import BaseController from './base';
 import CategoryService from '../services/category';
-import paginate from '../utils/getPageParams';
+import paginate from '../utils/products';
 
 
 const { category } = models;

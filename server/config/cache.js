@@ -9,9 +9,3 @@ export default isProd ? redis.createClient(REDIS_URL) :
         redis.createClient({
                 host: process.env.REDIS_HOST
             });
-
-
-        //         export default isProd ? redis.createClient(REDIS_URL) :   
-        // redis.createClient({
-        //         host: REDIS_HOST
-        //         });
