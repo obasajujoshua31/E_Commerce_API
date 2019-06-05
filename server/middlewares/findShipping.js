@@ -5,6 +5,19 @@ import ShippingService from '../services/shipping';
 
 const { shipping } = models;
 
+
+/**
+ * @description This method searches 
+ * the shipping table and retrieves 
+ * the row where the shipping id 
+ * matches the shipping id coming 
+ * from the body, it returns response 
+ * based on the result
+ * @param  {object} req
+ * @param  {object} res
+ * @param  {Function} next
+ * @returns {object} Server Response
+ */
 export default async (req, res, next) => {
     const { shipping_id } = req.body;
 
@@ -25,7 +38,18 @@ export default async (req, res, next) => {
     });
 };
 
-
+/**
+ * @description This method searches 
+ * the shipping region table and retrieves 
+ * the row where the shipping region id 
+ * matches the shipping region id coming 
+ * from the body, it returns response 
+ * based on the result
+ * @param  {object} req
+ * @param  {object} res
+ * @param  {Function} next
+ * @returns {object} Server Response
+ */
 export const findShippingRegion = async (req, res, next) => {
     const { shipping_region_id } = req.body;
 

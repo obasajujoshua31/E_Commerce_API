@@ -4,6 +4,9 @@ import BaseController from './base';
 
 
 class TaxController extends BaseController {
+    /**
+     * @returns  {Promise<Function>} allTaxes
+     */
     static getAllTaxes() {
         return this.asyncFunction(async (req, res) => {
         const allTaxes = await TaxService.getAllTaxes();
@@ -11,6 +14,9 @@ class TaxController extends BaseController {
      });
     }
 
+     /**
+     * @returns  {Promise<Function>} oneTax
+     */
     static getTax() {
         return this.asyncFunction(async (req, res) => {
             const { id } = req.params;
@@ -23,7 +29,8 @@ class TaxController extends BaseController {
                     return this.httpErrorResponse(req, res, 'TAX_02', 
                     `Don't exist Tax with this ID ${id}`, 'tax');
             }
-            return this.httpErrorResponse(req, res, 'TAX_01', `The ID ${id} is not a number`, 'tax');
+            return this
+                .httpErrorResponse(req, res, 'TAX_01', `The ID ${id} is not a number`, 'tax');
         });
     }
 }

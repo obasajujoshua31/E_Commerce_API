@@ -4,6 +4,9 @@ import DepartmentService from '../services/department';
 
 
 class DepartmentController extends BaseController {
+     /**
+     * @returns {Promise<Function>} allDepartments
+     */
     static getAllDepartments() {
         return this.asyncFunction(async (req, res) => {
                 const allDepartments = await DepartmentService.getAllDepartments();
@@ -11,6 +14,10 @@ class DepartmentController extends BaseController {
         });
     }
 
+
+     /**
+     * @returns {Promise<Function>} oneDepartment
+     */
     static getOneDepartment() {
         return this.asyncFunction(async (req, res) => {
             const { id } = req.params;

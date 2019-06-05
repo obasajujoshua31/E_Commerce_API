@@ -3,7 +3,15 @@ import models from '../models';
 
 const { customer } = models;
 
-
+/**
+ * @description This method searches 
+ * the customer table and returns the 
+ * row where the email matches the email provided
+ * @param  {object} req
+ * @param  {object} res
+ * @param  {Function} next
+ * @return  {object} Server Response
+ */
 export default async (req, res, next) => {
     const foundcustomer = await customer.findOne({
         where: {

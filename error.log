@@ -268,3 +268,42 @@
 {"level":"error","message":"Table 'myapp_test.customer' doesn't exist","service":"user-service"}
 =======
 >>>>>>> 3dcd65643a738c6993270df1b4b901c32bd10939
+{"level":"error","message":"WHERE parameter \"order_id\" has invalid \"undefined\" value","service":"user-service"}
+{"level":"error","message":"WHERE parameter \"order_id\" has invalid \"undefined\" value","service":"user-service"}
+{"level":"error","message":"Validation error","service":"user-service"}
+{"level":"error","message":"isEmpty is not defined","service":"user-service"}
+{"level":"error","message":"No such order: joshua","service":"user-service"}
+{"level":"error","message":"No such token: tok_bypassPendin","service":"user-service"}
+{"level":"error","message":"No such token: tok_bypassPendin","service":"user-service"}
+{"level":"error","message":"notNull Violation: audit.audit_id cannot be null","service":"user-service"}
+{"level":"error","message":"Table 'e_commerce_test.tax' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'e_commerce_test.tax' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'e_commerce_test.tax' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'e_commerce_test.shipping' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'e_commerce_test.shipping_region' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'e_commerce_test.shipping_region' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'e_commerce_test.shipping_region' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'e_commerce_test.customer' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'e_commerce_test.customer' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'e_commerce_test.customer' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'e_commerce_test.customer' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'e_commerce_test.customer' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'e_commerce_test.customer' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'e_commerce_test.customer' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'e_commerce_test.customer' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'e_commerce_test.review' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'e_commerce_test.review' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'e_commerce_test.review' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'e_commerce_test.customer' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'e_commerce_test.customer' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'e_commerce_test.customer' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'e_commerce_test.customer' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'e_commerce_test.customer' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'e_commerce_test.customer' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'e_commerce_test.customer' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'e_commerce_test.customer' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'e_commerce_test.customer' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'e_commerce_test.customer' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'e_commerce_test.customer' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'e_commerce_test.customer' doesn't exist","service":"user-service"}
+{"level":"error","message":"Table 'e_commerce_test.customer' doesn't exist","service":"user-service"}

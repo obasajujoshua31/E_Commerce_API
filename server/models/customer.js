@@ -78,6 +78,7 @@ export default (sequelize, Sequelize) => {
     });
   };
 
+  // generateToken Instance method
   customer.prototype.generateToken = function() {
     return authenticate.generateToken(this.customer_id);
   };

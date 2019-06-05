@@ -7,6 +7,8 @@ const
     TEST_DATABASE
   } = process.env;
 
+
+  // database configurations
 export default {
   development: {
     database: DATABASE,

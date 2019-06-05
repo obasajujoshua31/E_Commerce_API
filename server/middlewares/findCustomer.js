@@ -3,7 +3,17 @@ import models from '../models';
 
 const { customer } = models;
 
-
+/**
+ * @description This method searches 
+ * the customer table and returns 
+ * the customer where the customer_id 
+ * matches the given customer_id, it 
+ * returns response based on whether it is found or not
+ * @param  {object} req
+ * @param  {object} res
+ * @param  {Function} next
+ * @returns {object} Server Response
+ */
 export default async (req, res, next) => {
     const { customer_id } = req.user;
 

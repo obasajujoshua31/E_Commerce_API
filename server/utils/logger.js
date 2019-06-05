@@ -1,6 +1,9 @@
 import winston from 'winston';
 
-
+/**
+ * @description This creates winston logger with user-service as the defaultMeta
+ * it creates a tranport logger if it is not production
+ */
 const logger = winston.createLogger({
     level: 'info',
     format: winston.format.json(),

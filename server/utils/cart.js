@@ -1,3 +1,9 @@
+/**
+ * @description this prepare products 
+ * to be returned to clients
+ * @param  {array} allProducts
+ * @returns {array} products
+ */
 export default (allProducts) => {
     const products = [];
     allProducts.forEach((product) => {
@@ -15,7 +21,12 @@ export default (allProducts) => {
     return products;
 };
 
-
+/**
+ * @description This prepare saveItems to be saved in order_detail table
+ * @param  {array} allItems
+ * @returns {array} items
+ * 
+ */
 export const prepareSavedItems = (allItems) => {
     const items = [];
     allItems.forEach(item => {

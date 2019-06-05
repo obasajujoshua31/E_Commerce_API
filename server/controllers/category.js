@@ -8,7 +8,10 @@ import paginate from '../utils/products';
 const { category } = models;
 
 class CategoryController extends BaseController {
-    static getAllCategories(req, res) {
+     /**
+     * @returns {Promise<Function>} allCategoris
+     */
+    static getAllCategories() {
         return this.asyncFunction(async (req, res) => {
             const { page, limit } = req.query;
             const numberOfPage = parseInt(page, 10) || 1;
@@ -25,6 +28,10 @@ class CategoryController extends BaseController {
             });
         }
 
+
+     /**
+     * @returns {Promise<Function>} oneCategory
+     */
     static getOneCategory() {
         return this.asyncFunction(async (req, res) => {
             const { id } = req.params;
@@ -43,6 +50,10 @@ class CategoryController extends BaseController {
         });
     }
 
+
+     /**
+     * @returns {Promise<Function>} oneproductCategory
+     */
     static getCategoryByProduct() {
         return this.asyncFunction(async(req, res) => {
             const { product_id } = req.params;
@@ -65,6 +76,10 @@ class CategoryController extends BaseController {
         });
     }
 
+
+     /**
+     * @returns {Promise<Function>} category Departments
+     */
     static getCategoryByDepartment() {
         return this.asyncFunction(async(req, res) => {
             const { department_id } = req.params;

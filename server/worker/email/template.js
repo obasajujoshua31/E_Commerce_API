@@ -11,7 +11,12 @@ const mailGenerator = new Mailgen({
     // logo: 'https://mailgen.js/img/logo.png'
   }
 });
-
+/**
+ * @description This generates emailTemplate 
+ * to be sent to the customer
+ * @param  {Array} data
+ * @returns {HTMLElement}e mailGenEmailTemplate
+ */
 const emailTemplate = (data) => {
     const emailBody = {
         body: {
@@ -20,7 +25,6 @@ const emailTemplate = (data) => {
                 columns: {
                     // Optionally, customize the column widths
                     customWidth: {
-                        item_id: '8%',
                         order_id: '8%',
                         product_id: '8%',
                         attributes: '10%',

@@ -7,6 +7,12 @@ const { SENDGRID_KEY, EMAIL } = process.env;
 
 sgMail.setApiKey(SENDGRID_KEY);
 
+/**
+ * @description This sends email to the email provided with the payload provided
+ * @param  {string} email
+ * @param  {Array} payload
+ * @returns {Promise} sendEmail
+ */
 const sendEmail = async (email, payload) => {
   const msg = {
     to: email,

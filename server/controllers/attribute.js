@@ -7,6 +7,9 @@ import BaseController from './base';
 
 
 class AttributeController extends BaseController {
+     /**
+     * @returns {Promise<Function>} allAttributes
+     */
     static getAllAttributes() {
             return this.asyncFunction(async (req, res) => {
                 const allAttributs = await AttributeService.getAllAttributes();
@@ -14,6 +17,10 @@ class AttributeController extends BaseController {
             });
     }
 
+
+     /**
+     * @returns {Promise<Function>} one Attribute
+     */
     static getOneAttribute() {
         return this.asyncFunction(async(req, res) => {
             const { id } = req.params;
@@ -31,6 +38,10 @@ class AttributeController extends BaseController {
         });
     }
 
+
+     /**
+     * @returns {Promise<Function>} oneAttributeValue
+     */
     static getOneAttributeValue() {
         return this.asyncFunction(async (req, res) => {
             const { value_id } = req.params;
@@ -49,6 +60,10 @@ class AttributeController extends BaseController {
         });
     }
 
+
+     /**
+     * @returns {Promise<Function>} allProducts Attributes
+     */
     static getAllProductAttributes () {
         return this.asyncFunction(async (req, res) => {
             const { product_id } = req.params;

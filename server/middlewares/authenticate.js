@@ -2,6 +2,15 @@ import jwt from 'jsonwebtoken';
 
 
 export default class CheckToken {
+    /**
+     * @description This method check 
+     * if user token exists, verifies user Token and append the user to the request object
+     * @param  {object} req
+     * @param  {object} res
+     * @param  {Function} next
+     * @returns  {object} Server Response
+     * @member CheckToken
+     */
     static verifyUser(req, res, next) {
         try {
             const { user_key } = req.headers;
@@ -32,6 +41,12 @@ export default class CheckToken {
         }
     }
 
+    /**
+     * @description This method generates token with the customer_id and set Expiration to 24hrs
+     * @param  {number} customer_id
+     * @returns  {string} token
+     * @member CheckToken
+     */
     static generateToken(customer_id) {
         return jwt.sign( { customer_id }, process.env.SECRET, { expiresIn: '24hr' });
     }

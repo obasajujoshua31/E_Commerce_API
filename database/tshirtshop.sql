@@ -83,7 +83,7 @@ CREATE TABLE `shopping_cart` (
 
 -- Create orders table
 CREATE TABLE `orders` (
-  `order_id`     INT           NOT NULL  AUTO_INCREMENT,
+  `order_id`     INT  NOT NULL  AUTO_INCREMENT,
   `total_amount` DECIMAL(10,2) NOT NULL  DEFAULT '0.00',
   `created_on`   DATETIME      NOT NULL,
   `shipped_on`   DATETIME,
@@ -100,9 +100,10 @@ CREATE TABLE `orders` (
   KEY `idx_orders_tax_id` (`tax_id`)
 ) ENGINE=MyISAM;
 
--- Create order_details table
+
+-- Create order_detail table
 CREATE TABLE `order_detail` (
-  `item_id`      INT           NOT NULL  AUTO_INCREMENT,
+  `item_id`      INT  NOT NULL  AUTO_INCREMENT,
   `order_id`     INT           NOT NULL,
   `product_id`   INT           NOT NULL,
   `attributes`   VARCHAR(1000) NOT NULL,
@@ -115,14 +116,14 @@ CREATE TABLE `order_detail` (
 
 -- Create shipping_region table
 CREATE TABLE `shipping_region` (
-  `shipping_region_id` INT          NOT NULL  AUTO_INCREMENT,
+  `shipping_region_id` INT  NOT NULL  AUTO_INCREMENT,
   `shipping_region`    VARCHAR(100) NOT NULL,
   PRIMARY KEY  (`shipping_region_id`)
 ) ENGINE=MyISAM;
 
 -- Create customer table
 CREATE TABLE `customer` (
-  `customer_id`        INT           NOT NULL AUTO_INCREMENT,
+  `customer_id`        INT    NOT NULL AUTO_INCREMENT,
   `name`               VARCHAR(50)   NOT NULL,
   `email`              VARCHAR(100)  NOT NULL,
   `password`           VARCHAR(255)   NOT NULL,

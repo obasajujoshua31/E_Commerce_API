@@ -7,9 +7,15 @@ import logger from '../utils/logger';
  */
 
    class BaseController {
-    /**
-     * @param  {object} res
+    /** 
+     * @description This returns server 
+     * response for array objects, 
+     * it creates cache if keep is not specified and does not create cache if keep is false
+     * @param  {object} req
+     * @param {object} res
      * @param  {Array} data
+     * @param {boolean} keep
+     * @member BaseController
      * @returns  {object} server response
      */
     static httpSuccessCollectionResponse(req, res, data, keep = true) {
@@ -20,6 +26,17 @@ import logger from '../utils/logger';
         return res.status(200).json([...data]);
     }
 
+    /**
+     *@description This methods sends 
+     server response and create cache 
+     by default if keep is not specified 
+     and does not create cache if keep is false
+     * @param  {object} req
+     * @param  {object} res
+     * @param  {object} data
+     * @param  {boolean} keep
+     * @returns {object} httpResponse
+     */
     static httpSuccessEachResponse(req, res, data, keep = true) {
         const result = { ...data };
         if (keep) {
@@ -33,11 +50,16 @@ import logger from '../utils/logger';
 
 /**
  *
- *
+ *@description This returns error 
+ response and create cache if 
+ keep is not specified and does 
+ not create cache when keep is false
+ * @param {object} req
  * @param {object} res
  * @param {number} code
  * @param {string} message
  * @param {string} field
+ * @param {boolean} keep
  * @returns {object} server response
  * @memberof BaseController
  */
@@ -58,7 +80,7 @@ static httpErrorResponse(req, res, code, message, field, keep = true) {
 
 /**
  *
- *
+ *@description This returns server error 500 with message Server unavailable
  * @param {object} res
  * @param {Error} error
  * @returns {object} server response
@@ -73,11 +95,25 @@ static httpErrorResponse(req, res, code, message, field, keep = true) {
         });
     }
 
+    /**
+     * @description This returns an 
+     * asynchronous handler with 
+     * request and response as the parameters
+     * @param  {Function} handler
+     * @param  {boolean} hasError
+     * @returns {callback} function
+     */
     static asyncFunction(handler, hasError = false) {
+        /**
+         * @param  {object} req
+         * @param  {object} res
+         * @param  {error.message}} message
+         */
         return async (req, res) => {
             try {
                await handler(req, res);
             } catch (error) {
+                console.log('>>>>>eririr', error);
                 logger.log({ level: 'error', message: error.message });
                 if (hasError) {
                     switch (error.type) {

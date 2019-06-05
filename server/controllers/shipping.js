@@ -4,6 +4,9 @@ import BaseController from './base';
 
 
 class ShippingController extends BaseController {
+     /**
+     * @returns {Promise<Function>} allShippingRegion
+     */
     static getAllShippingRegion() {
         return this.asyncFunction(async (req, res) => {
                 const allShippings = await ShippingService.getAllShippings();
@@ -11,6 +14,10 @@ class ShippingController extends BaseController {
         });
     }
 
+
+     /**
+     * @returns {Promise<Function>} oneShipping
+     */
     static getOneShipping() {
         return this.asyncFunction(async(req, res) => {
         const { shipping_id } = req.params;

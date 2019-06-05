@@ -7,6 +7,9 @@ import getParams, { isValid } from '../utils/getPageParams';
 
 
 export default class ProductController extends BaseController {
+     /**
+     * @returns {Promise<Function>} getAllProducts
+     */
     static getAllProducts() {
         return this.asyncFunction(async(req, res) => {
             const { numberOfPage, pageLimit, descriptionLength } = getParams(req.query);
@@ -25,6 +28,10 @@ export default class ProductController extends BaseController {
         });
     }
 
+
+     /**
+     * @returns {Promise<Function>} get one product
+     */
     static getOneProduct() {
         return this.asyncFunction(async (req, res) => {
             const { id } = req.params;
@@ -41,6 +48,9 @@ export default class ProductController extends BaseController {
         });
  }
 
+     /**
+     * @returns {Promise<Function>} get product by category
+     */
 static getProductsByCategory() {
     return this.asyncFunction(async (req, res) => {
         const { category_id } = req.params;
@@ -72,6 +82,10 @@ static getProductsByCategory() {
     });
 }
 
+
+     /**
+     * @returns {Promise<Function>} get products by departments
+     */
     static getProductsByDepartment() {
         return this.asyncFunction(async (req, res) => {
             const { department_id } = req.params;
@@ -97,6 +111,9 @@ static getProductsByCategory() {
     }
 
 
+     /**
+     * @returns {Promise<Function>} get products location
+     */
     static getProductsLocation () {
         return this.asyncFunction(async (req, res) => {
             const { id } = req.params;
@@ -117,6 +134,9 @@ static getProductsByCategory() {
     }
 
 
+     /**
+     * @returns {Promise<Function>} get products review
+     */
     static getProductsReviews() {
         return this.asyncFunction(async (req, res) => {
             const { product_id } = req.params;
@@ -134,6 +154,10 @@ static getProductsByCategory() {
         });
     }
 
+
+     /**
+     * @returns {Promise<Function>} search products
+     */
     static searchProducts() {
         return this.asyncFunction(async (req, res) => {
             const { query_string } = req.query;
@@ -157,6 +181,10 @@ static getProductsByCategory() {
         });
     }
 
+
+     /**
+     * @returns {Promise<Function>} addProductsReview
+     */
     static addProductsReviews() {
         return this.asyncFunction(async (req, res) => {
             const { product_id } = req.params;

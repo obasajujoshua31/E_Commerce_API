@@ -1,3 +1,15 @@
+/**
+ * @description This destructures orders 
+ * and picks out order_id, 
+ * total_amount, created_on, 
+ * shipped_on and status from order object
+ * @param  {number} order_id
+ * @param  {number} total_amount
+ * @param  {Date} created_on
+ * @param  {Date} shipped_on
+ * @param  {string} status}
+ * @returns {object} object
+ */
 export default ({ order_id, total_amount, created_on, shipped_on, status }) => {
     return {
         order_id,
@@ -8,7 +20,11 @@ export default ({ order_id, total_amount, created_on, shipped_on, status }) => {
     };
 };
 
-
+/**
+ * @description This prepares Order info to be returned to client
+ * @param  {Array} orders
+ * @returns  {Array} allOrders
+ */
 export const prepareOrderInfo = (orders) => {
     const allOrders = [];
         orders.forEach(item => {
@@ -25,14 +41,18 @@ export const prepareOrderInfo = (orders) => {
 
     return allOrders;
 };
-
+/**
+ * @description This prepares Products to be returned to client
+ * @param  {Array} products
+ * @param  {number} order_id
+ * @returns  {Array} allItems
+ */
 
 export const prepareProducts = (products, order_id) => {
     let allItems = [];
     
                 products.forEach(item => {
                     allItems.push({
-                        item_id: item.item_id,
                         order_id,
                         product_id: item.product_id,
                         attributes: item.attributes,

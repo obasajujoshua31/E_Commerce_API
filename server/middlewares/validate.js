@@ -1,5 +1,4 @@
 import { check, validationResult } from 'express-validator/check';
-import models from "../models";
 import { validator } from "../validations/validator";
 import formatError from '../utils/formatError';
 import {
@@ -15,7 +14,6 @@ import {
   paymentSchema
 } from "../validations/schemas/schema";
 
-const { Users } = models;
 /**
  * @description Get the schema definitions
  *
@@ -58,6 +56,11 @@ export default async (req, res, next) => {
   return next();
 };
 
+/**
+ * @description This method validates
+ *  update card to make sure quantity is a number and it is not empty
+ * @returns {Function} Validation result
+ */
 export const validateUpdateCart = () => {
   return [
     check('quantity').isNumeric().withMessage('quantity must be a number')

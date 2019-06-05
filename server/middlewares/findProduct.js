@@ -2,6 +2,17 @@ import isEmpty from 'lodash.isempty';
 import ProductService from '../services/product';
 import { isValid } from '../utils/getPageParams';
 
+
+/**
+ * @description This method calls 
+ * productService to check whether 
+ * the product exists with the product_id coming from the body
+ * it returns response based on the result
+ * @param  {object} req
+ * @param  {object} res
+ * @param  {Function} next
+ * @returns {object} Server Response
+ */
 export default async (req, res, next) => {
     const { product_id } = req.body;
     
@@ -18,6 +29,16 @@ export default async (req, res, next) => {
     });
 };
 
+/**
+ * @description This method calls 
+ * productService to check whether 
+ * the product exists with the product_id coming from the params
+ * it returns response based on the result
+ * @param  {object} req
+ * @param  {object} res
+ * @param  {Function} next
+ * @returns {object} Server Response
+ */
 export const findProductFromParam = async (req, res, next) => {
     const { product_id } = req.params;
 
