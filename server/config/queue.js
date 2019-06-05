@@ -1,9 +1,8 @@
 import kue from 'kue';
-import client from './cache';
+import dotenv from 'dotenv';
 
-// kue connections with redis client
-kue.redis.createClient = function() {
-    return client;
-};
+dotenv.config();
 
-export default kue.createQueue();
+export default kue.createQueue({
+    redis: process.env.REDIS_URL
+});
