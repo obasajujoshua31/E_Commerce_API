@@ -92,4 +92,13 @@ export default class OrderService extends BaseService {
     static async getOrderDetail(order_id) {
         return await this.findOne(orders, { order_id });
     }
+
+    /**
+     * @description This service mark a certain order as paid
+     * @param  {object} order
+     * @member OrderService
+     */
+    static async markOrderAsPaid(order) {
+        order.confirmPayment();
+    }
 }

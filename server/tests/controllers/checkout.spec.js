@@ -187,15 +187,19 @@ describe('/Order Routes', () => {
     it('should return a status Code of 200 for a valid input credentials', async () => {
        const response = await request(app)
            .post(`${baseUrl}/charge`)
-           .send({ amount: 400, description: 'Joshua', stripeToken: 'joshua', currency: 'USD', order_id });
+           .send({ amount: 400, 
+            description: 'Joshua', 
+            stripeToken: 'joshua', 
+            currency: 'USD', 
+            order_id });
            expect(response.statusCode).toBe(200);
     });
    
-    it(`should return a status Code of 200 for a 
-       valid input credentials without currency`, async () => {
+    it(`should return a status Code of 400 for a 
+       order that has already been cleared`, async () => {
        const response = await request(app)
            .post(`${baseUrl}/charge`)
            .send({ amount: 400, description: 'Joshua', stripeToken: 'joshua', order_id });
-           expect(response.statusCode).toBe(200);
+           expect(response.statusCode).toBe(400);
     });
    });

@@ -89,13 +89,14 @@ export default (sequelize, Sequelize) => {
 
 
   customer.prototype.updateCustomerFields = async function(user) {
-    const { name, email, password, day_phone, eve_phone, mob_phone } = user;
+    const { name, email, password, day_phone, eve_phone, mob_phone, region } = user;
     this.name = name;
     this.email = email;
     this.password = hashPassword(password);
     this.day_phone = day_phone;
     this.eve_phone = eve_phone;
     this.mob_phone = mob_phone;
+    this.region = region;
     await this.save();
     await this.reload();
     return this;
