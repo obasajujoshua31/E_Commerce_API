@@ -1,0 +1,1836 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "This is a E Commerce API",
+    "version": "1.0.0",
+    "title": "Joshua E Commerce API",
+    "termsOfService": "http://swagger.io/terms/",
+    "contact": {
+      "email": "obasajujoshua31@gmail.com"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "host": "joshua-e-commerce.herokuapp.com",
+  "tags": [
+    {
+      "name": "Tax",
+      "description": "Everything about your Taxes"
+    },
+    {
+      "name": "Customers",
+      "description": "Everything about Customers"
+    },
+    {
+      "name": "Order",
+      "description": "Operations about orders"
+    },
+    {
+      "name": "Shopping Cart",
+      "description": "Everything about your Shopping Cart"
+    },
+    {
+      "name": "Departments",
+      "description": "Everything about Departments"
+    },
+    {
+      "name": "Category",
+      "description": "Operations about Categories"
+    },
+    {
+      "name": "Shipping",
+      "description": "Everything about Shipping"
+    },
+    {
+      "name": "Products",
+      "description": "Operations about Products"
+    },
+    {
+      "name": "Attributes",
+      "description": "Operations about Attributes"
+    },
+    {
+      "name": "Stripe Payment",
+      "description": "Operations about Stripe Payment"
+    }
+  ],
+  "schemes": [
+    "https",
+    "http"
+  ],
+  "paths": {
+    "/tax": {
+      "get": {
+        "tags": [
+          "Tax"
+        ],
+        "summary": "all Taxes",
+        "description": "Get all Taxes",
+        "operationId": "getTaxes",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/tax/{id}": {
+      "get": {
+        "tags": [
+          "Tax"
+        ],
+        "summary": "Get one single Tax",
+        "description": "",
+        "operationId": "get One Tax",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of tax to return",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Tax Found"
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          }
+        }
+      }
+    },
+    "/customers": {
+      "post": {
+        "tags": [
+          "Customers"
+        ],
+        "summary": "Register a new Customer",
+        "description": "Register a new Customer",
+        "operationId": "registerCustomer",
+        "consumes": [
+          "application/json",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "name",
+            "in": "body",
+            "description": "The user object to register",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/newUser"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "new user object"
+          },
+          "400": {
+            "description": "user already exists"
+          }
+        }
+      }
+    },
+    "/customer": {
+      "get": {
+        "tags": [
+          "Customers"
+        ],
+        "summary": "Get a Customer",
+        "description": "Get a Customer details",
+        "operationId": "getCustomer",
+        "consumes": [
+          "application/json",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "USER_KEY",
+            "in": "header",
+            "description": "user authentication token",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "new user object"
+          },
+          "401": {
+            "description": "unauthorized"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Customers"
+        ],
+        "summary": "update customer biodata",
+        "description": "update customer biodata",
+        "operationId": "updateCustomerBiodata",
+        "consumes": [
+          "application/json",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "USER_KEY",
+            "in": "header",
+            "description": "user authentication token",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "user object",
+            "in": "body",
+            "description": "user object to update",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/biodata"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "new user object"
+          },
+          "401": {
+            "description": "unauthorized"
+          }
+        }
+      }
+    },
+    "/customers/login": {
+      "post": {
+        "tags": [
+          "Customers"
+        ],
+        "summary": "Login a registered Customer",
+        "description": "Login a Customer",
+        "operationId": "LoginCustomer",
+        "consumes": [
+          "application/json",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "name",
+            "in": "body",
+            "description": "The user object to register",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/customer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "sign in user object"
+          },
+          "400": {
+            "description": "user already exists"
+          }
+        }
+      }
+    },
+    "/customers/facebook": {
+      "post": {
+        "tags": [
+          "Customers"
+        ],
+        "summary": "Login a customer via facebook",
+        "description": "Login a via facebook",
+        "operationId": "facebookLogin",
+        "consumes": [
+          "application/json",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "name",
+            "in": "body",
+            "description": "access_token",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/facebook"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "sign in user object"
+          },
+          "400": {
+            "description": "user already exists"
+          }
+        }
+      }
+    },
+    "/customers/creditCard": {
+      "put": {
+        "tags": [
+          "Customers"
+        ],
+        "summary": "Update customer credit card",
+        "description": "Update custumer credit card",
+        "operationId": "update Customer Credit card",
+        "consumes": [
+          "application/json",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "USER_KEY",
+            "in": "header",
+            "type": "string",
+            "description": "user Authentication key"
+          },
+          {
+            "name": "credit_card",
+            "in": "body",
+            "description": "user credit card",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/creditCard"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "updated user record"
+          },
+          "401": {
+            "description": "unauthorized"
+          }
+        }
+      }
+    },
+    "/customers/address": {
+      "put": {
+        "tags": [
+          "Customers"
+        ],
+        "summary": "Update customer Address",
+        "description": "Update custumer credit Address",
+        "operationId": "update Customer Credit Address",
+        "consumes": [
+          "application/json",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "USER_KEY",
+            "in": "header",
+            "type": "string",
+            "description": "user Authentication key"
+          },
+          {
+            "name": "credit_card",
+            "in": "body",
+            "description": "user credit card",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/address"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "updated user record"
+          },
+          "400": {
+            "description": "bad request"
+          },
+          "401": {
+            "description": "unauthorized"
+          }
+        }
+      }
+    },
+    "/shoppingcart/generateUniqueId": {
+      "get": {
+        "tags": [
+          "Shopping Cart"
+        ],
+        "summary": "Generate unique shopping cart Id",
+        "description": "Generate shopping cart Id",
+        "operationId": "generate unique Id",
+        "consumes": [
+          "application/json",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "unique id"
+          }
+        }
+      }
+    },
+    "/shoppingcart/add": {
+      "post": {
+        "tags": [
+          "Shopping Cart"
+        ],
+        "summary": "Add product to cart",
+        "description": "Add product to cart",
+        "operationId": "add product to cart",
+        "consumes": [
+          "application/json",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "product payload",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/addProduct"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "cart object"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/shoppingcart/{cart_id}": {
+      "get": {
+        "tags": [
+          "Shopping Cart"
+        ],
+        "summary": "Get products in shopping cart",
+        "description": "Get products in shopping cart",
+        "operationId": "getProductsInCart",
+        "consumes": [
+          "application/json",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "cart_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "cart id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "cart object"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/shoppingcart/update/{item_id}": {
+      "put": {
+        "tags": [
+          "Shopping Cart"
+        ],
+        "summary": "Update item in shopping cart",
+        "description": "Update item in shopping cart",
+        "operationId": "updateItemInCart",
+        "consumes": [
+          "application/json",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "item_id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "description": "item id to update"
+          },
+          {
+            "name": "quantity",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/updateQuantity"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "cart object"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/shoppingcart/totalAmount/{cart_id}": {
+      "get": {
+        "tags": [
+          "Shopping Cart"
+        ],
+        "summary": "get Total amount in shopping cart",
+        "description": "get Total amount in shopping cart",
+        "operationId": "get Total amount in shopping cart",
+        "consumes": [
+          "application/json",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "cart_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "cart id to get totalAmount "
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "total amount"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/shoppingcart/saveForLater/{item_id}": {
+      "get": {
+        "tags": [
+          "Shopping Cart"
+        ],
+        "summary": "save Item for later",
+        "description": "save Item for later",
+        "operationId": "saveItemForLater",
+        "consumes": [
+          "application/json",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "item_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "item to save for Later"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/shoppingcart/getSaved/{cart_id}": {
+      "get": {
+        "tags": [
+          "Shopping Cart"
+        ],
+        "summary": "get saved Item in shopping cart",
+        "description": "get saved Item for later",
+        "operationId": "getSaveItemForLater",
+        "consumes": [
+          "application/json",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "cart_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "cart to get saved for Later"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/shoppingcart/moveToCart/{item_id}": {
+      "get": {
+        "tags": [
+          "Shopping Cart"
+        ],
+        "summary": "move saved Item to shopping cart",
+        "description": "move saved Item to Shopping Cart",
+        "operationId": "moveSaveItemToShoppingCart",
+        "consumes": [
+          "application/json",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "item_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "item to move to shopping cart"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/shoppingcart/removeProduct/{item_id}": {
+      "delete": {
+        "tags": [
+          "Shopping Cart"
+        ],
+        "summary": "remove Product from shopping cart",
+        "description": "remove Product from shopping cart",
+        "operationId": "removeProductFromShoppingCart",
+        "consumes": [
+          "application/json",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "item_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "item to remove from shopping cart"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/shoppingcart/empty/{cart_id}": {
+      "delete": {
+        "tags": [
+          "Shopping Cart"
+        ],
+        "summary": "empty items in shopping cart",
+        "description": "empty items shopping cart",
+        "operationId": "emptyItemsFromShoppingCart",
+        "consumes": [
+          "application/json",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "cart_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "shopping cart to empty"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/orders": {
+      "post": {
+        "tags": [
+          "Order"
+        ],
+        "summary": "Post an Order",
+        "description": "Post an order",
+        "operationId": "PostOrder",
+        "consumes": [
+          "application/json",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "USER_KEY",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "User Authentication key"
+          },
+          {
+            "name": "cart payload",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/postOrder"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "cart object"
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/orders/{order_id}": {
+      "get": {
+        "tags": [
+          "Order"
+        ],
+        "summary": "Get Order Information",
+        "description": "Get order information",
+        "operationId": "getOrderInfo",
+        "consumes": [
+          "application/json",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "USER_KEY",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "User Authentication key"
+          },
+          {
+            "name": "order_id",
+            "in": "path",
+            "required": true,
+            "description": "order Id",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "order object"
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/orders/inCustomer": {
+      "get": {
+        "tags": [
+          "Order"
+        ],
+        "summary": "Get Orders by a customer",
+        "description": "Get customer orders",
+        "operationId": "getCustomerOrder",
+        "consumes": [
+          "application/json",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "USER_KEY",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "User Authentication key"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "order object"
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/orders/shortDetail/{order_id}": {
+      "get": {
+        "tags": [
+          "Order"
+        ],
+        "summary": "Get Order short Detail",
+        "description": "Get Order short detail",
+        "operationId": "getOrderShortDetail",
+        "consumes": [
+          "application/json",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "USER_KEY",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "User Authentication key"
+          },
+          {
+            "name": "order_id",
+            "in": "path",
+            "type": "integer",
+            "required": true,
+            "description": "order to be retrieved"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "order object"
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/stripe/payment": {
+      "post": {
+        "tags": [
+          "Stripe Payment"
+        ],
+        "summary": "Create a Charge",
+        "description": "create a charge for an order",
+        "operationId": "createCharge",
+        "consumes": [
+          "application/json",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "payload",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/payment"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "stripe success response"
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/shipping/regions": {
+      "get": {
+        "tags": [
+          "Shipping"
+        ],
+        "summary": "all Shippings",
+        "description": "Get all Shipping Region",
+        "operationId": "getAllShippingRegion",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Return array of Shipping"
+          }
+        }
+      }
+    },
+    "/shipping/regions/{id}": {
+      "get": {
+        "tags": [
+          "Shipping"
+        ],
+        "summary": "Get one single shipping region",
+        "description": "",
+        "operationId": "getOneSingleShipping",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of shipping region to return",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Shipping Region Found"
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          }
+        }
+      }
+    },
+    "/categories": {
+      "get": {
+        "tags": [
+          "Category"
+        ],
+        "summary": "all Categories",
+        "description": "Get all Categories",
+        "operationId": "getCategories",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "page",
+            "type": "integer"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "limit",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Return Array of Categories"
+          }
+        }
+      }
+    },
+    "/categories/{id}": {
+      "get": {
+        "tags": [
+          "Category"
+        ],
+        "summary": "Get one single Category",
+        "description": "get One Category",
+        "operationId": "getOneCategory",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of category to return",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Category Found"
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          }
+        }
+      }
+    },
+    "/categories/inProduct/{product_id}": {
+      "get": {
+        "tags": [
+          "Category"
+        ],
+        "summary": "all Product Categories",
+        "description": "Get all Product Categories",
+        "operationId": "getProductCategories",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "product_id",
+            "in": "path",
+            "type": "integer",
+            "required": true,
+            "description": "product Id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Return Array of Products"
+          },
+          "400": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/categories/inDepartment/{department_id}": {
+      "get": {
+        "tags": [
+          "Category"
+        ],
+        "summary": "Get Categories by Departments",
+        "description": "Get all Categories by Department",
+        "operationId": "getDepartmentCategories",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "department_id",
+            "in": "path",
+            "type": "integer",
+            "required": true,
+            "description": "deparment Id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Return Array of Object Categories"
+          },
+          "400": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/departments": {
+      "get": {
+        "tags": [
+          "Departments"
+        ],
+        "summary": "all Departments",
+        "description": "Get all Departments",
+        "operationId": "getDepartments",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Return Array of object Departments"
+          }
+        }
+      }
+    },
+    "/departments/{department_id}": {
+      "get": {
+        "tags": [
+          "Departments"
+        ],
+        "summary": "Get one single Department",
+        "description": "get One Department",
+        "operationId": "getOneDepartment",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "department_id",
+            "in": "path",
+            "description": "ID of department to return",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "object of Department"
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          }
+        }
+      }
+    },
+    "/attributes": {
+      "get": {
+        "tags": [
+          "Attributes"
+        ],
+        "summary": "all Attributes",
+        "description": "Get all Attributes",
+        "operationId": "getAttributes",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Return Array of object Attributes"
+          }
+        }
+      }
+    },
+    "/attributes/{attribute_id}": {
+      "get": {
+        "tags": [
+          "Attributes"
+        ],
+        "summary": "Get one single Attribute",
+        "description": "get One Attribute",
+        "operationId": "getOneAttribute",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "attribute_id",
+            "in": "path",
+            "description": "ID of attribute to return",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "object of Attribute"
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          }
+        }
+      }
+    },
+    "/attributes/values/{attribute_id}": {
+      "get": {
+        "tags": [
+          "Attributes"
+        ],
+        "summary": "Get one Attribute Values",
+        "description": "get One attribute Values",
+        "operationId": "getAttributeValues",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "attribute_id",
+            "in": "path",
+            "description": "ID of attribute value to return",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of Attribute Values"
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          }
+        }
+      }
+    },
+    "/attributes/inProduct/{product_id}": {
+      "get": {
+        "tags": [
+          "Attributes"
+        ],
+        "summary": "Get one Product Attributes",
+        "description": "get One Product Attributes",
+        "operationId": "getProductAttributes",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "product_id",
+            "in": "path",
+            "description": "ID of product to return",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of Products"
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          }
+        }
+      }
+    },
+    "/products": {
+      "get": {
+        "tags": [
+          "Products"
+        ],
+        "summary": "all Products",
+        "description": "Get all Products",
+        "operationId": "getProducts",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "page: default to 1",
+            "type": "integer"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "limit: default to 20",
+            "type": "integer"
+          },
+          {
+            "name": "description_length",
+            "in": "query",
+            "type": "integer",
+            "description": "description length: default to 200"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Return Array of Products"
+          }
+        }
+      }
+    },
+    "/products/search": {
+      "get": {
+        "tags": [
+          "Products"
+        ],
+        "summary": "Search Products",
+        "description": "Search for products",
+        "operationId": "searchProducts",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "query_string",
+            "in": "query",
+            "required": true,
+            "description": "product to search for",
+            "type": "string"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "page: default to 1",
+            "type": "integer"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "limit: default to 20",
+            "type": "integer"
+          },
+          {
+            "name": "description_length",
+            "in": "query",
+            "type": "integer",
+            "description": "description length: default to 200"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Return Array of Products"
+          }
+        }
+      }
+    },
+    "/products/{product_id}": {
+      "get": {
+        "tags": [
+          "Products"
+        ],
+        "summary": "Get one single Product",
+        "description": "get One Product",
+        "operationId": "getOneProduct",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "product_id",
+            "in": "path",
+            "description": "ID of product to return",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "object of Product"
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          }
+        }
+      }
+    },
+    "/products/{product_id}/details": {
+      "get": {
+        "tags": [
+          "Products"
+        ],
+        "summary": "Get one Product Detail",
+        "description": "get One Product Detail",
+        "operationId": "getOneProduct Detail",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "product_id",
+            "in": "path",
+            "description": "ID of product to return",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "object of Product"
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          }
+        }
+      }
+    },
+    "/products/{product_id}/locations": {
+      "get": {
+        "tags": [
+          "Products"
+        ],
+        "summary": "Get one Product Location",
+        "description": "get One Product Location",
+        "operationId": "getOneProductLocation",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "product_id",
+            "in": "path",
+            "description": "ID of product to return",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "object of Product"
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          }
+        }
+      }
+    },
+    "/products/{product_id}/reviews": {
+      "post": {
+        "tags": [
+          "Products"
+        ],
+        "summary": "Add product review",
+        "description": "Add products review",
+        "operationId": "Add products Review",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "product_id",
+            "in": "path",
+            "description": "ID of product to return",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "USER_KEY",
+            "in": "header",
+            "type": "string",
+            "required": true,
+            "description": "user authentication token"
+          },
+          {
+            "name": "review",
+            "in": "body",
+            "description": "product Review",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/review"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "object of Product"
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Products"
+        ],
+        "summary": "Get product Review",
+        "description": "Get review for products",
+        "operationId": "getProductReview",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "product_id",
+            "in": "path",
+            "type": "integer",
+            "required": true,
+            "description": "product Id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Array of product reviews"
+          },
+          "400": {
+            "description": "Review cannot be found"
+          }
+        }
+      }
+    },
+    "/products/inCategory/{category_id}": {
+      "get": {
+        "tags": [
+          "Products"
+        ],
+        "summary": "List of products in Category",
+        "description": "Get all Products in a particular Category",
+        "operationId": "getProductsInCategory",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "category_id",
+            "in": "path",
+            "type": "integer",
+            "required": true,
+            "description": "products in category ID"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "page: default to 1",
+            "type": "integer"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "limit: default to 20",
+            "type": "integer"
+          },
+          {
+            "name": "description_length",
+            "in": "query",
+            "type": "integer",
+            "description": "description length: default to 200"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Array of objects of Product"
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          }
+        }
+      }
+    },
+    "/products/inDepartment/{department_id}": {
+      "get": {
+        "tags": [
+          "Products"
+        ],
+        "summary": "List of products in Department",
+        "description": "Get all Products in a particular Department",
+        "operationId": "getProductsInDepartment",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "department_id",
+            "in": "path",
+            "type": "integer",
+            "required": true,
+            "description": "products in department ID"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "page: default to 1",
+            "type": "integer"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "limit: default to 20",
+            "type": "integer"
+          },
+          {
+            "name": "description_length",
+            "in": "query",
+            "type": "integer",
+            "description": "description length: default to 200"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Array of object of Product"
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "newUser": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string",
+          "example": "me@example.com"
+        },
+        "password": {
+          "type": "string"
+        }
+      }
+    },
+    "postOrder": {
+      "type": "object",
+      "properties": {
+        "cart_id": {
+          "type": "string"
+        },
+        "shipping_id": {
+          "type": "integer"
+        },
+        "tax_id": {
+          "type": "integer"
+        }
+      }
+    },
+    "biodata": {
+      "required": [
+        "name",
+        "email"
+      ],
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string",
+          "example": "me@example.com"
+        },
+        "password": {
+          "type": "string"
+        },
+        "day_phone": {
+          "type": "string"
+        },
+        "mob_phone": {
+          "type": "string"
+        },
+        "eve_phone": {
+          "type": "string"
+        }
+      }
+    },
+    "review": {
+      "type": "object",
+      "properties": {
+        "rating": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "review": {
+          "type": "string"
+        }
+      }
+    },
+    "customer": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      }
+    },
+    "payment": {
+      "required": [
+        "order_id",
+        "stripeToken",
+        "description",
+        "amount"
+      ],
+      "type": "object",
+      "properties": {
+        "order_id": {
+          "type": "integer"
+        },
+        "stripeToken": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "amount": {
+          "type": "integer",
+          "description": "must be a number"
+        },
+        "currency": {
+          "type": "string",
+          "default": "USD"
+        }
+      }
+    },
+    "updateQuantity": {
+      "properties": {
+        "quantity": {
+          "type": "integer"
+        }
+      }
+    },
+    "addProduct": {
+      "required": [
+        "product_id",
+        "cart_id",
+        "attributes"
+      ],
+      "type": "object",
+      "properties": {
+        "product_id": {
+          "type": "integer"
+        },
+        "cart_id": {
+          "type": "string"
+        },
+        "attributes": {
+          "type": "string"
+        }
+      }
+    },
+    "facebook": {
+      "required": [
+        "access_token"
+      ],
+      "properties": {
+        "access_token": {
+          "type": "string"
+        }
+      }
+    },
+    "creditCard": {
+      "required": [
+        "credit_card"
+      ],
+      "type": "object",
+      "properties": {
+        "credit_card": {
+          "type": "string"
+        }
+      }
+    },
+    "address": {
+      "type": "object",
+      "required": [
+        "address_1",
+        "shipping_region_id",
+        "city",
+        "postal_code",
+        "region",
+        "country"
+      ],
+      "properties": {
+        "address_1": {
+          "type": "string"
+        },
+        "address_2": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "shipping_region_id": {
+          "type": "integer"
+        },
+        "postal_code": {
+          "type": "string"
+        },
+        "region": {
+          "type": "string"
+        },
+        "country": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "externalDocs": {
+    "description": "Find out more about Swagger",
+    "url": "http://swagger.io"
+  }
+}

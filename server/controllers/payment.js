@@ -4,6 +4,7 @@ import BaseController from './base';
 import OrderService from '../services/order';
 import AuditService from '../services/audit';
 import logger from '../utils/logger';
+import { PAID } from '../utils/constants';
 
 export default class PaymentController extends BaseController {
      /**
@@ -17,7 +18,7 @@ export default class PaymentController extends BaseController {
 
             try {
                 // Get details about the order requested
-            const orderRequested = await OrderService.getInfo(order_id);
+            const orderRequested = await OrderService.getOrderDetail(order_id);
 
             // return error if order is not found
             if (isEmpty(orderRequested)) {
@@ -25,6 +26,12 @@ export default class PaymentController extends BaseController {
                 .httpErrorResponse(req, res, 'ORD_02', 'order is empty', 'order_id', false);
             }
 
+            // check the status of the order if it is unpaid 
+            if (orderRequested.status === PAID) {
+                return this
+                .httpErrorResponse(req, res, 
+                    'ORD_01', 'Payment has been made for this order', 'order_id', false);
+            }
             // create charge
             const charges = await stripe.makePayment(stripeToken, amount, current, description);
 
@@ -37,6 +44,10 @@ export default class PaymentController extends BaseController {
             };
 
             await AuditService.createAudit(newAudit);
+
+            // mark order as paid
+           await OrderService.markOrderAsPaid(orderRequested);
+
             // send response
             return this.httpSuccessEachResponse(req, res, charges, false);
             } catch (error) {
