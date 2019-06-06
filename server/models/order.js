@@ -1,3 +1,5 @@
+import { PAID } from "../utils/constants";
+
 export default (sequelize, Sequelize) => {
   const orderSchema = {
     order_id: {
@@ -18,7 +20,7 @@ export default (sequelize, Sequelize) => {
       type: Sequelize.DATE
     },
     status: {
-      type: Sequelize.STRING
+      type: Sequelize.INTEGER
     },
     comments: {
       type: Sequelize.STRING
@@ -65,6 +67,13 @@ export default (sequelize, Sequelize) => {
       foreignKey: 'order_id',
       target: 'order_id'
     });
+  };
+
+
+  order.prototype.confirmPayment = async function() {
+    this.status = PAID;
+    await this.save();
+    await this.reload();
   };
   return order;
 };

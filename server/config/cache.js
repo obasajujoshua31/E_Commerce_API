@@ -9,6 +9,4 @@ const isProd = NODE_ENV === 'production';
 
 
 export default isProd ? redis.createClient(REDIS_URL) :   
-        redis.createClient({
-                host: REDIS_HOST
-            });
+        redis.createClient();
